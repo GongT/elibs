@@ -1,0 +1,36 @@
+{
+	"$schema": "https://developer.microsoft.com/json-schemas/rush/v5/command-line.schema.json",
+	"commands": [
+		{
+			"commandKind": "global",
+			"name": "fix",
+			"summary": "同步各个项目的版本号",
+			"safeForSimultaneousRushProcesses": true,
+			"shellCommand": "node @build-script/rush-tools/bin.cjs autofix"
+		},
+		{
+			"commandKind": "global",
+			"name": "upgrade",
+			"summary": "更新所有项目的依赖版本到最新，注意：执行后需要手动运行rush update -p",
+			"allowWarningsInSuccessfulBuild": true,
+			"shellCommand": "node @build-script/rush-tools/bin.cjs check-update"
+		},
+		{
+			"commandKind": "bulk",
+			"name": "clean",
+			"summary": "在每个项目中运行“clean”命令",
+			"enableParallelism": true,
+			"ignoreDependencyOrder": true,
+			"allowWarningsInSuccessfulBuild": true
+		},
+		{
+			"commandKind": "global",
+			"name": "pretty",
+			"summary": "运行“pretty-quick”命令，格式化所有文件",
+			"autoinstallerName": "rush-prettier",
+			"safeForSimultaneousRushProcesses": true,
+			"shellCommand": "pretty-quick --staged"
+		}
+	],
+	"parameters": []
+}

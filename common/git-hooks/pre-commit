@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+echo --------------------------------------------
+echo "Starting Git hook: pre-commit"
+
+export EDITOR='code --wait'
+node common/scripts/install-run-rush.js pretty
+RET=$?
+
+echo "Finished Git hook: pre-commit ($RET)"
+echo --------------------------------------------
+
+exit $RET

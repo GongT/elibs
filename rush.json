@@ -1,0 +1,41 @@
+{
+	"$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+	"rushVersion": "5.42.0",
+	"pnpmVersion": "5.18.5",
+	"pnpmOptions": {
+		"pnpmStore": "global",
+		"strictPeerDependencies": false,
+		"resolutionStrategy": "fewer-dependencies"
+	},
+	"nodeSupportedVersionRange": ">=10.13.0",
+	"suppressNodeLtsWarning": true,
+	"ensureConsistentVersions": false,
+	"projectFolderMinDepth": 2,
+	"projectFolderMaxDepth": 2,
+	"allowMostlyStandardPackageNames": false,
+	"gitPolicy": {
+		// "allowedEmailRegExps": [
+		//   "[^@]+@users\\.noreply\\.github\\.com",
+		//   "travis@example\\.org"
+		// ],
+		// "sampleEmail": "mrexample@users.noreply.github.com",
+		// "versionBumpCommitMessage": "Applying package updates. [skip-ci]"
+	},
+	"repository": {
+		"url": "git@github.com:GongT/baobao.git"
+	},
+	"eventHooks": {
+		"preRushInstall": [],
+		"postRushInstall": [],
+		"preRushBuild": [],
+		"postRushBuild": []
+	},
+	"variants": [],
+	"projects": [
+		{
+			"packageName": "@gongt/window-manager",
+			"projectFolder": "projects/window-manager",
+			"shouldPublish": true
+		}
+	]
+}
