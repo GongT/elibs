@@ -1,11 +1,22 @@
 {
-	"name": "@gongt/window-manager",
-	"type": "commonjs",
+	"name": "@gongt/tabui",
+	"type": "module",
 	"version": "0.0.0",
 	"author": "GongT <admin@gongt.me> https://github.com/gongt/",
 	"license": "MIT",
-	"main": "./lib/_export_all_in_one_index.js",
+	"main": "./lib/_export_all_in_one_index.cjs",
+	"module": "./lib/_export_all_in_one_index.js",
 	"typings": "docs/package-public.d.ts",
+	"exports": {
+		".": {
+			"require": "./lib/_export_all_in_one_index.cjs",
+			"import": "./lib/_export_all_in_one_index.js"
+		},
+		"./main": {
+			"require": "./lib/main.cjs",
+			"import": "./lib/main.js"
+		}
+	},
 	"scripts": {
 		"build": "build-script build",
 		"clean": "rimraf lib",
@@ -13,20 +24,19 @@
 		"prepack": "build-script rebuild",
 		"test": "build-script test",
 		"upgrade": "build-script upgrade",
-		"watch": "build-script watch"
+		"watch": "build-script watch",
+		"serve": "electron --no-sandbox tests/main.cjs"
 	},
 	"dependencies": {
 		"@idlebox/common": "^1.1.4",
-		"@idlebox/node": "^1.0.27",
-		"@idlebox/state": "^0.0.2",
+		"reflect-metadata": "^0.1.13",
+		"sass": "^1.32.8",
 		"tslib": "^2.1.0"
 	},
 	"devDependencies": {
 		"@build-script/builder": "^2.1.8",
-		"@build-script/export-all-in-one": "^3.0.23",
 		"@build-script/single-dog-asset": "^1.0.11",
 		"@build-script/typescript-transformer-dual-package": "^1.0.20",
-		"baobab": "^2.6.1",
 		"electron": "^12.0.1",
 		"gulp": "^4.0.2",
 		"ttypescript": "^1.5.12",

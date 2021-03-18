@@ -6,3 +6,4 @@ dist/
 *.tgz
 lib
 test*
+!tests/

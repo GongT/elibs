@@ -1,7 +1,17 @@
 {
+	"load": [
+		{
+			"file": "@build-script/export-all-in-one/build-script-register",
+			"args": ["src/tsconfig.json"]
+		}
+	],
 	"alias": {
-		"build-ts": "tsc -p src",
-		"watch-ts": "tsc -w -p src",
+		"build-scss": "sass src:lib",
+		"watch-scss": "sass --watch src:lib",
+		"build-ts": "ttsc -p src",
+		"watch-ts": "ttsc -w -p src",
+		"build-main-ts": "ttsc -p src/tsconfig.main.json",
+		"watch-main-ts": "ttsc -w -p src/tsconfig.main.json",
 		"cleanup-lib": "rimraf lib",
 		"yarn-publish": "yarn publish --ignore-scripts --registry https://registry.npmjs.org --access=public",
 		"upgrade-node-modules": "npm-check-updates --update --packageFile ./package.json",
@@ -11,7 +21,7 @@
 	"command": {
 		"build": {
 			"title": "Build project",
-			"run": ["build-ts"]
+			"run": ["build-ts", "build-main-ts", "build-scss"]
 		},
 		"distclean": {
 			"title": "Delete git ignore files (without node_modules)",
@@ -42,7 +52,7 @@
 		},
 		"watch": {
 			"title": "Watch mode build project",
-			"run": ["watch-ts"]
+			"run": ["watch-ts", "watch-main-ts", "watch-scss"]
 		}
 	}
 }

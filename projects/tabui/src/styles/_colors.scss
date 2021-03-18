@@ -1,0 +1,17 @@
+:root {
+	--button-color: #a8a8a8;
+	--button-color-border: #636363;
+	--handle-color: #c8c8c8;
+
+	--foreground: #bababa;
+	--foreground-active: #f0f0f0;
+	--foreground-hover: #f0f0f0;
+	--foreground-click: #f5f5f5;
+
+	--background: #424242;
+	--background-active: #535353;
+	--background-hover: #4f4f4f;
+	--background-click: #383838;
+
+	--border: var(--background-click) 1px solid;
+}

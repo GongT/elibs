@@ -36,6 +36,11 @@
 			"packageName": "@gongt/window-manager",
 			"projectFolder": "projects/window-manager",
 			"shouldPublish": true
+		},
+		{
+			"packageName": "@gongt/tabui",
+			"projectFolder": "projects/tabui",
+			"shouldPublish": true
 		}
 	]
 }

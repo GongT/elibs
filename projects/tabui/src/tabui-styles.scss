@@ -1,0 +1,139 @@
+@import './styles/icons';
+@import './styles/colors';
+
+$fontSize: 11px;
+
+@mixin iconBase($size: 1em) {
+	width: $size;
+	height: $size;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
+
+tab-container {
+	display: flex;
+
+	&[direction='bottom'] {
+		flex-direction: column;
+	}
+	&[direction='top'] {
+		flex-direction: column-reverse;
+	}
+	&[direction='left'] {
+		flex-direction: row-reverse;
+	}
+	&[direction='right'] {
+		flex-direction: row;
+	}
+
+	.hide {
+		display: none !important;
+	}
+
+	> tab-header {
+		user-select: none;
+		display: flex;
+		flex-direction: row;
+
+		background-color: var(--background);
+		color: var(--foreground);
+
+		> tab-switch {
+			padding: 0 9px;
+			font-size: $fontSize;
+			line-height: $fontSize + 5;
+			height: $fontSize + 5 + 7 * 2;
+
+			display: inline-flex;
+			flex-direction: column;
+			justify-content: center;
+			cursor: pointer;
+			text-align: left;
+
+			border-bottom: var(--border);
+			border-top: var(--border);
+			border-right: var(--border);
+
+			&[active] {
+				cursor: default;
+				background-color: var(--background-active);
+				color: var(--foreground-active);
+				border-bottom: transparent 1px solid;
+			}
+			&:not([active]):hover {
+				background-color: var(--background-hover);
+				color: var(--foreground-hover);
+			}
+			&.click-down {
+				background-color: var(--background-click) !important;
+				color: var(--foreground-click) !important;
+			}
+			&.drag {
+				border: var(--border) !important;
+				background-color: var(--background) !important;
+				color: var(--foreground) !important;
+			}
+
+			> .vparent {
+				display: flex;
+				flex-direction: row;
+
+				> .icon {
+					@include iconBase($fontSize + 5);
+				}
+
+				> .close {
+					font-size: $fontSize + 5;
+					margin-left: 1em;
+					@include iconBase();
+					@include closeIcon();
+				}
+			}
+		}
+
+		> .spacer {
+			border-bottom: var(--border);
+			display: inline-block;
+			flex: 1;
+		}
+
+		> tab-menu {
+			border-bottom: var(--border);
+			padding: 0 4px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			> button {
+				font-size: $fontSize + 7;
+				background: transparent;
+				border: transparent 1px solid;
+				outline: transparent;
+
+				color: var(--button-color);
+				padding: 3px;
+
+				&:hover {
+					border: var(--button-color-border) 1px solid;
+				}
+
+				cursor: pointer;
+				@include iconBase();
+				@include menuIcon();
+			}
+		}
+	}
+
+	> tab-body {
+		background-color: var(--background-active);
+		> tab-view {
+			min-height: 1em;
+			min-width: 1em;
+			display: none;
+
+			&[open] {
+				display: block;
+			}
+		}
+	}
+}

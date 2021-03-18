@@ -1,0 +1,14 @@
+{
+	"extends": "../node_modules/@build-script/single-dog-asset/package/tsconfig.json",
+	"compilerOptions": {
+		"esModuleInterop": false,
+		"outDir": "../lib",
+		"rootDir": ".",
+		"lib": ["esnext", "dom"],
+		"typeRoots": ["../node_modules/@types", "../node_modules"],
+		"declaration": false,
+		"declarationMap": false,
+		"sourceMap": false
+	},
+	"exclude": ["main.ts"]
+}
