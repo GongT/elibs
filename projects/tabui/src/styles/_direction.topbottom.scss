@@ -1,0 +1,56 @@
+@mixin dirTopBottom() {
+	> tab-header {
+		height: $fontSizeIcon + $tabPadding * 2 + $borderWidth * 2;
+
+		> tab-switch {
+			padding: 0 9px;
+			height: $fontSizeIcon + $tabPadding * 2;
+			border-right: var(--border) $borderWidth solid;
+
+			> .vparent {
+				> .close {
+					margin-left: 1em;
+				}
+			}
+		}
+		> tab-menu {
+			padding: 0 4px;
+		}
+	}
+	> tab-body {
+		min-height: 1em;
+	}
+}
+@mixin dirTop() {
+	flex-direction: column-reverse;
+	> tab-header {
+		> * {
+			border-top: var(--border) $borderWidth solid;
+			border-bottom: var(--border) $borderWidth solid;
+		}
+		> tab-switch {
+			&[active] {
+				border-top: transparent $borderWidth solid;
+			}
+		}
+	}
+}
+@mixin dirBottom() {
+	flex-direction: column;
+	> tab-header {
+		> tab-switch {
+			border-bottom: var(--border) $borderWidth solid;
+			border-top: var(--border) $borderWidth solid;
+
+			&[active] {
+				border-bottom: transparent $borderWidth solid;
+			}
+		}
+		> .spacer {
+			border-bottom: var(--border) $borderWidth solid;
+		}
+		> tab-menu {
+			border-bottom: var(--border) $borderWidth solid;
+		}
+	}
+}

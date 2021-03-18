@@ -1,7 +1,12 @@
 @import './styles/icons';
 @import './styles/colors';
+@import './styles/direction.leftright';
+@import './styles/direction.topbottom';
 
 $fontSize: 11px;
+$fontSizeIcon: 16px;
+$tabPadding: 7px;
+$borderWidth: 1px;
 
 @mixin iconBase($size: 1em) {
 	width: $size;
@@ -15,16 +20,20 @@ tab-container {
 	display: flex;
 
 	&[direction='bottom'] {
-		flex-direction: column;
+		@include dirTopBottom();
+		@include dirBottom();
 	}
 	&[direction='top'] {
-		flex-direction: column-reverse;
+		@include dirTopBottom();
+		@include dirTop();
 	}
 	&[direction='left'] {
-		flex-direction: row-reverse;
+		@include dirLeftRight();
+		@include dirLeft();
 	}
 	&[direction='right'] {
-		flex-direction: row;
+		@include dirLeftRight();
+		@include dirRight();
 	}
 
 	.hide {
@@ -40,10 +49,8 @@ tab-container {
 		color: var(--foreground);
 
 		> tab-switch {
-			padding: 0 9px;
 			font-size: $fontSize;
-			line-height: $fontSize + 5;
-			height: $fontSize + 5 + 7 * 2;
+			line-height: $fontSizeIcon;
 
 			display: inline-flex;
 			flex-direction: column;
@@ -51,15 +58,10 @@ tab-container {
 			cursor: pointer;
 			text-align: left;
 
-			border-bottom: var(--border);
-			border-top: var(--border);
-			border-right: var(--border);
-
 			&[active] {
 				cursor: default;
 				background-color: var(--background-active);
 				color: var(--foreground-active);
-				border-bottom: transparent 1px solid;
 			}
 			&:not([active]):hover {
 				background-color: var(--background-hover);
@@ -70,22 +72,20 @@ tab-container {
 				color: var(--foreground-click) !important;
 			}
 			&.drag {
-				border: var(--border) !important;
+				border-color: transparent !important;
 				background-color: var(--background) !important;
 				color: var(--foreground) !important;
 			}
 
 			> .vparent {
 				display: flex;
-				flex-direction: row;
-
 				> .icon {
-					@include iconBase($fontSize + 5);
+					@include iconBase($fontSizeIcon);
 				}
 
 				> .close {
-					font-size: $fontSize + 5;
-					margin-left: 1em;
+					flex-direction: row;
+					font-size: $fontSizeIcon;
 					@include iconBase();
 					@include closeIcon();
 				}
@@ -93,28 +93,25 @@ tab-container {
 		}
 
 		> .spacer {
-			border-bottom: var(--border);
 			display: inline-block;
 			flex: 1;
 		}
 
 		> tab-menu {
-			border-bottom: var(--border);
-			padding: 0 4px;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			> button {
 				font-size: $fontSize + 7;
 				background: transparent;
-				border: transparent 1px solid;
+				border: transparent $borderWidth solid;
 				outline: transparent;
 
 				color: var(--button-color);
 				padding: 3px;
 
 				&:hover {
-					border: var(--button-color-border) 1px solid;
+					border: var(--button-color-border) $borderWidth solid;
 				}
 
 				cursor: pointer;
@@ -127,8 +124,6 @@ tab-container {
 	> tab-body {
 		background-color: var(--background-active);
 		> tab-view {
-			min-height: 1em;
-			min-width: 1em;
 			display: none;
 
 			&[open] {

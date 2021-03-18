@@ -3,13 +3,15 @@ import { DOMEvent } from '../common/dom-event';
 import { DOMGetterSetter, getCustomProperties, GetterSetter } from '../common/dom-getset';
 import { __defineTabId, __getTabId } from '../common/helper';
 import { IPanelMenuRequest, IPCID } from '../common/ipc.id';
-import { rendererInvoke } from '../common/ipc.renderer';
+import { DND_TYPE_ID, rendererInvoke } from '../common/ipc.renderer';
 import { ITabConfig } from '../common/type';
+import { TabMenu } from './menu';
 import { TabSwitch } from './switch';
 
 @DefineCustomElements()
 export class TabHeader extends HTMLElement {
 	private readonly $spacer = document.createElement('span') as HTMLSpanElement;
+	private readonly $menu: TabMenu;
 	private readonly observer = new MutationObserver(this.updateChildStatus.bind(this));
 
 	private childs: TabSwitch[] = [];
@@ -20,7 +22,8 @@ export class TabHeader extends HTMLElement {
 		super();
 		this.$spacer.className = 'spacer';
 		this.$spacer.draggable = true;
-		// console.log('constructor: value=%s', this.getAttribute('value'));
+
+		this.$menu = new TabMenu();
 	}
 
 	@DOMEvent({ targetProperty: '$spacer', eventName: 'dragstart' })
@@ -36,7 +39,7 @@ export class TabHeader extends HTMLElement {
 			this.classList.remove('drag');
 		}, 50);
 		dataTransfer.clearData();
-		dataTransfer.setData('tabui-panel', this.childs.map(__getTabId).join(','));
+		dataTransfer.setData(DND_TYPE_ID, this.childs.map(__getTabId).join(','));
 	}
 
 	@DOMEvent({ targetProperty: '$spacer', preventDefault: true })
@@ -117,12 +120,7 @@ export class TabHeader extends HTMLElement {
 		this.observer.observe(this, { childList: true });
 
 		// console.log('connectedCallback:%s', this.isConnected);
-		const $menu = this.querySelector('tab-menu');
-		if ($menu) {
-			this.insertBefore(this.$spacer, $menu);
-		} else {
-			this.append(this.$spacer);
-		}
+		this.append(this.$spacer, this.$menu);
 	}
 
 	async addTab(options: ITabConfig) {
@@ -131,9 +129,11 @@ export class TabHeader extends HTMLElement {
 		const tabId = await rendererInvoke(IPCID.GetNextTabGuid);
 		__defineTabId(newTab, tabId);
 
+		console.log(options);
 		for (const key of getCustomProperties(newTab)) {
 			if (options.hasOwnProperty(key)) {
-				(newTab as any)[key] = (options as any)[key];
+				console.log('addTab:%s = %s', key, (options as any)[key]);
+				newTab.setAttribute(key, (options as any)[key]);
 			}
 		}
 

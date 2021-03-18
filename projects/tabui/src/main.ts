@@ -1,8 +1,9 @@
 import { BrowserWindow, ipcMain, IpcMainInvokeEvent } from 'electron';
-import { IPanelMenuRequest, IPCID, ITabMenuRequest } from './common/ipc.id';
+import { DND_TYPE_ID_BASE, IPanelMenuRequest, IPCID, ITabMenuRequest } from './common/ipc.id';
 
 const randomId = 'electron-app-tabui-id-' + (Math.random() * 100000).toFixed(0);
 let guid = 1;
+const DND_TYPE_ID = DND_TYPE_ID_BASE + ':' + randomId;
 
 export function initTabUIMainProcess() {
 	if (BrowserWindow.getAllWindows().length > 0) {

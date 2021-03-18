@@ -1,5 +1,7 @@
 import type { MenuItemConstructorOptions } from 'electron';
 
+export const DND_TYPE_ID_BASE = 'tabui-drag-tab';
+
 export enum IPCID {
 	GetApplicationId = 'get.app.id',
 	GetNextTabGuid = 'get.tab.guid',

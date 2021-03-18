@@ -3,7 +3,7 @@ import { DefineCustomElements } from '../common/custom-elements';
 import { DOMEvent } from '../common/dom-event';
 import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
 import { IPCID, ITabMenuRequest } from '../common/ipc.id';
-import { rendererInvoke } from '../common/ipc.renderer';
+import { DND_TYPE_ID, rendererInvoke } from '../common/ipc.renderer';
 
 interface ITabSwitchOptions {
 	onMenu(): ReadonlyArray<MenuItemConstructorOptions>;
@@ -27,8 +27,6 @@ export class TabSwitch extends HTMLElement {
 
 		this.mouseup = this.mouseup.bind(this);
 
-		this.setAttribute('draggable', 'true');
-
 		const $vparent = document.createElement('div');
 		$vparent.className = 'vparent';
 
@@ -45,14 +43,11 @@ export class TabSwitch extends HTMLElement {
 	}
 
 	@DOMEvent({})
-	protected dragstart({ preventDefault, dataTransfer, offsetX: x, offsetY: y }: DragEvent) {
+	protected dragstart({ dataTransfer, offsetX: x, offsetY: y }: DragEvent) {
 		this.mouseup();
 		if (!dataTransfer) {
 			debugger;
 			return;
-		}
-		if (!this.detachable) {
-			return preventDefault();
 		}
 
 		dataTransfer.effectAllowed = 'move';
@@ -62,7 +57,7 @@ export class TabSwitch extends HTMLElement {
 			this.classList.remove('drag');
 		}, 50);
 		dataTransfer.clearData();
-		dataTransfer.setData('tabui-panel', [this.tabId].join(','));
+		dataTransfer.setData(DND_TYPE_ID, [this.tabId].join(','));
 	}
 
 	@DOMEvent({ preventDefault: true })
@@ -162,7 +157,9 @@ export class TabSwitch extends HTMLElement {
 		} else if (name === 'movable') {
 			const v = DOMGetterSetter.boolean.get(newValue);
 			if (v) {
+				this.setAttribute('draggable', 'true');
 			} else {
+				this.removeAttribute('draggable');
 				this.classList.remove('movable');
 				this.detachable = false;
 			}
@@ -174,7 +171,7 @@ export class TabSwitch extends HTMLElement {
 		} else if (name === 'active') {
 			const bVal = DOMGetterSetter.boolean.get(newValue);
 			if (bVal) {
-				console.log('active', this.tabId);
+				// console.log('active', this.tabId);
 				const event = new CustomEvent('switch', { detail: this.tabId, bubbles: true });
 				this.dispatchEvent(event);
 			}
