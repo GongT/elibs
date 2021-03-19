@@ -11,8 +11,10 @@ import { TabSwitch } from './switch';
 @DefineCustomElements()
 export class TabHeader extends HTMLElement {
 	private readonly $spacer = document.createElement('span') as HTMLSpanElement;
+	private readonly $scroller = document.createElement('div') as HTMLDivElement;
 	private readonly $menu: TabMenu;
-	private readonly observer = new MutationObserver(this.updateChildStatus.bind(this));
+	private readonly childsChangeObserver = new MutationObserver(this.updateChildStatus.bind(this));
+	private readonly spaceResizeObserver = new ResizeObserver(this.resizeHandler.bind(this));
 
 	private childs: TabSwitch[] = [];
 	private $last?: Element;
@@ -23,7 +25,17 @@ export class TabHeader extends HTMLElement {
 		this.$spacer.className = 'spacer';
 		this.$spacer.draggable = true;
 
+		this.$scroller.className = 'tabs';
+
 		this.$menu = new TabMenu();
+
+		this.innerHTML = '';
+		this.append(this.$scroller, this.$spacer, this.$menu);
+	}
+
+	@DOMEvent({ targetProperty: '$spacer', eventName: 'dragstart' })
+	onMenuButtonDragStart(e: DragEvent) {
+		return this.onTitleBarDragStart(e);
 	}
 
 	@DOMEvent({ targetProperty: '$spacer', eventName: 'dragstart' })
@@ -52,14 +64,51 @@ export class TabHeader extends HTMLElement {
 		this.select = detail!;
 	}
 
-	attributeChangedCallback(name: string, _oldValue: string | null, _newValue: string | null) {
-		// console.log('[%s] %s : %s => %s', this.constructor.name, name, _oldValue, _newValue);
-		if (name === 'select') {
-			if (this.isConnected) {
-				this._update();
+	private declare lastOverflow: boolean;
+	private resizeHandler() {
+		const overflow = this.vertical
+			? this.$scroller.scrollHeight > this.$scroller.offsetHeight
+			: this.$scroller.scrollWidth > this.$scroller.offsetWidth;
+		if (overflow === this.lastOverflow) return;
+		this.lastOverflow = overflow;
+
+		if (overflow) {
+			this.$menu.setAttribute('scroll-visible', '');
+		} else {
+			this.$menu.removeAttribute('scroll-visible');
+		}
+	}
+
+	@DOMEvent({ targetProperty: '$menu', eventName: 'scroll' })
+	protected onTabScroll({ detail: direction }: CustomEvent) {
+		if (this.childs.length === 0) return;
+
+		const current = this.vertical ? this.$scroller.scrollTop : this.$scroller.scrollLeft;
+		const selfSize = this.vertical ? this.$scroller.offsetHeight : this.$scroller.offsetWidth;
+		// console.log('current=%s   selfSize=%s   vertical=%s', current, selfSize, this.vertical);
+
+		if (direction === '+') {
+			const last = this.childs[this.childs.length - 1];
+			const end = offsetEndPosition(this.vertical, last) - selfSize;
+
+			for (const item of this.childs) {
+				const pos = this.vertical ? item.offsetTop : item.offsetLeft;
+				// console.log('   [%s] %s,%s = %s', this.childs.indexOf(item), item.offsetTop, item.offsetLeft, pos);
+				if (pos > current) {
+					// console.log('found item!');
+					return this.setScroll(Math.min(pos, end));
+				}
 			}
 		} else {
-			console.warn('Unknown change key: %s', name);
+			const currentPlus = current + selfSize;
+			for (let i = this.childs.length - 1; i >= 0; i--) {
+				const pos = offsetEndPosition(this.vertical, this.childs[i]);
+				// console.log('   [%s] %s', i, pos);
+				if (pos < currentPlus) {
+					// console.log('found item!');
+					return this.setScroll(Math.max(pos - selfSize, 0));
+				}
+			}
 		}
 	}
 
@@ -100,8 +149,8 @@ export class TabHeader extends HTMLElement {
 
 	private updateChildStatus() {
 		const childs = [];
-		for (let n = 0; n < this.children.length; n++) {
-			const node = this.children.item(n)!;
+		for (let n = 0; n < this.$scroller.children.length; n++) {
+			const node = this.$scroller.children.item(n)!;
 			if (node.tagName === 'TAB-SWITCH') {
 				childs.push(node as TabSwitch);
 			}
@@ -113,14 +162,13 @@ export class TabHeader extends HTMLElement {
 
 	disconnectedCallback() {
 		// console.log('disconnectedCallback:%s', this.isConnected);
-		this.observer.disconnect();
+		this.childsChangeObserver.disconnect();
+		this.spaceResizeObserver.disconnect();
 	}
 
 	connectedCallback() {
-		this.observer.observe(this, { childList: true });
-
-		// console.log('connectedCallback:%s', this.isConnected);
-		this.append(this.$spacer, this.$menu);
+		this.childsChangeObserver.observe(this.$scroller, { childList: true });
+		this.spaceResizeObserver.observe(this.$scroller);
 	}
 
 	async addTab(options: ITabConfig) {
@@ -129,17 +177,42 @@ export class TabHeader extends HTMLElement {
 		const tabId = await rendererInvoke(IPCID.GetNextTabGuid);
 		__defineTabId(newTab, tabId);
 
-		console.log(options);
 		for (const key of getCustomProperties(newTab)) {
 			if (options.hasOwnProperty(key)) {
-				console.log('addTab:%s = %s', key, (options as any)[key]);
+				// console.log('addTab:%s = %s', key, (options as any)[key]);
 				newTab.setAttribute(key, (options as any)[key]);
 			}
 		}
 
-		this.insertBefore(newTab, this.$spacer);
+		this.$scroller.append(newTab);
 		return newTab;
 	}
 
+	public setScroll(pos: number) {
+		if (this.vertical) {
+			this.$scroller.scrollTo(0, pos);
+		} else {
+			this.$scroller.scrollTo(pos, 0);
+		}
+	}
+
+	attributeChangedCallback(name: string, _oldValue: string | null, _newValue: string | null) {
+		// console.log('[%s] %s : %s => %s', this.constructor.name, name, _oldValue, _newValue);
+		if (name === 'select') {
+			if (this.isConnected) {
+				this._update();
+			}
+		} else if (name === 'vertical') {
+			this.scrollTo({ top: 0, left: 0 });
+		} else {
+			console.warn('Unknown change key: %s', name);
+		}
+	}
+
 	@GetterSetter(DOMGetterSetter.interger(0)) public declare select: number;
+	@GetterSetter(DOMGetterSetter.boolean) public declare vertical: boolean;
+}
+
+function offsetEndPosition(vertical: boolean, item: HTMLElement) {
+	return vertical ? item.offsetTop + item.offsetHeight : item.offsetLeft + item.offsetWidth;
 }

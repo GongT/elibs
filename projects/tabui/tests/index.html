@@ -14,15 +14,21 @@
 				flex-direction: row;
 				justify-content: space-between;
 			}
+			#tabN2 {
+				height: 400px;
+			}
 		</style>
 	</head>
 	<body>
+		<div id="tabE"></div>
 		<div id="tab1"></div>
 		<div class="flex">
 			<div id="tab2"></div>
+			<div id="tabN2"></div>
 			<div id="tab3"></div>
 		</div>
 		<div id="tab4"></div>
+		<div id="tabN1"></div>
 		<script>
 			'use strict';
 			const { loadStyle, TabContainer } = require('@gongt/tabui');
@@ -32,6 +38,26 @@
 			test(2, 'left');
 			test(3, 'right');
 			test(4, 'top');
+
+			const tabE = new TabContainer();
+			document.getElementById('tabE').append(tabE);
+
+			const tabN = new TabContainer();
+			for (let i = 0; i < 20; i++) {
+				tabN.addTab({
+					title: 'Tab ' + i,
+				});
+			}
+			document.getElementById('tabN1').append(tabN);
+
+			const tabN2 = new TabContainer();
+			tabN2.direction = 'right';
+			for (let i = 0; i < 20; i++) {
+				tabN2.addTab({
+					title: 'Tab ' + i,
+				});
+			}
+			document.getElementById('tabN2').append(tabN2);
 
 			function test(num, dir) {
 				const tab = new TabContainer();
@@ -43,7 +69,6 @@
 					title: 'Unmovable',
 					movable: false,
 				});
-				document.getElementById('tab' + num).append(tab);
 				tab.addTab({
 					title: 'Undetachable',
 					detachable: false,
@@ -56,6 +81,7 @@
 					title: 'Pinned',
 					closable: false,
 				});
+				document.getElementById('tab' + num).append(tab);
 			}
 		</script>
 	</body>

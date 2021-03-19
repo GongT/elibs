@@ -59,13 +59,12 @@ export function DefineCustomElements(options?: ElementDefinitionOptions) {
 			configurable: false,
 			enumerable: true,
 			writable: false,
-			value: function disconnectedCallback(this: InstanceType<T>) {
+			value: function connectedCallback(this: InstanceType<T>) {
 				const anyThis = this as any;
 				if (!this.isConnected) {
 					anyThis.disconnectedCallback();
 					return;
 				}
-				if (originalConnectedCallback) originalConnectedCallback.call(this);
 
 				if (eventCallbacks && eventCallbacks.length) {
 					if (anyThis[domEventDisposableSymbol]) {
@@ -94,6 +93,8 @@ export function DefineCustomElements(options?: ElementDefinitionOptions) {
 				}
 
 				anyThis[firstMountSymbol] = false;
+
+				if (originalConnectedCallback) originalConnectedCallback.call(this);
 			},
 		});
 

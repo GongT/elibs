@@ -39,6 +39,8 @@
 		"@build-script/typescript-transformer-dual-package": "^1.0.20",
 		"electron": "^12.0.1",
 		"gulp": "^4.0.2",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
 		"ttypescript": "^1.5.12",
 		"typescript": "^4.2.3"
 	}

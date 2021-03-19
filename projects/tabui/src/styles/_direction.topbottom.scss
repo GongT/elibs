@@ -2,14 +2,16 @@
 	> tab-header {
 		height: $fontSizeIcon + $tabPadding * 2 + $borderWidth * 2;
 
-		> tab-switch {
-			padding: 0 9px;
-			height: $fontSizeIcon + $tabPadding * 2;
-			border-right: var(--border) $borderWidth solid;
+		> .tabs {
+			> tab-switch {
+				padding: 0 9px;
+				height: $fontSizeIcon + $tabPadding * 2;
+				border-right: var(--border) $borderWidth solid;
 
-			> .vparent {
-				> .close {
-					margin-left: 1em;
+				> .vparent {
+					> .close {
+						margin-left: 1em;
+					}
 				}
 			}
 		}
@@ -28,9 +30,11 @@
 			border-top: var(--border) $borderWidth solid;
 			border-bottom: var(--border) $borderWidth solid;
 		}
-		> tab-switch {
-			&[active] {
-				border-top: transparent $borderWidth solid;
+		> .tabs {
+			> tab-switch {
+				&[active] {
+					border-top: transparent $borderWidth solid;
+				}
 			}
 		}
 	}
@@ -38,12 +42,14 @@
 @mixin dirBottom() {
 	flex-direction: column;
 	> tab-header {
-		> tab-switch {
-			border-bottom: var(--border) $borderWidth solid;
-			border-top: var(--border) $borderWidth solid;
+		> .tabs {
+			> tab-switch {
+				border-bottom: var(--border) $borderWidth solid;
+				border-top: var(--border) $borderWidth solid;
 
-			&[active] {
-				border-bottom: transparent $borderWidth solid;
+				&[active] {
+					border-bottom: transparent $borderWidth solid;
+				}
 			}
 		}
 		> .spacer {

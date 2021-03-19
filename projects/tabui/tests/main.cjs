@@ -7,7 +7,7 @@ app.on('ready', () => {
 
 	const win = new BrowserWindow({
 		width: 1600,
-		height: 600,
+		height: 800,
 		webPreferences: {
 			contextIsolation: false,
 			enableRemoteModule: false,

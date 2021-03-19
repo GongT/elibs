@@ -2,22 +2,12 @@ import { DefineCustomElements } from '../common/custom-elements';
 import { DOMEvent } from '../common/dom-event';
 import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
 import { __getTabId } from '../common/helper';
-import { ITabConfig } from '../common/type';
+import { ITabConfig, ViewDirection } from '../common/type';
 import { TabBody } from './body';
 import { TabHeader } from './header';
 
-enum ViewDirection {
-	left = 'left',
-	right = 'right',
-	top = 'top',
-	bottom = 'bottom',
-}
-
 @DefineCustomElements()
 export class TabContainer extends HTMLElement {
-	@GetterSetter(DOMGetterSetter.enumerate(ViewDirection, ViewDirection.bottom))
-	public declare direction: ViewDirection;
-
 	private readonly $header = new TabHeader();
 	private readonly $body = new TabBody();
 
@@ -46,5 +36,21 @@ export class TabContainer extends HTMLElement {
 		this.$body.deleteTab(detail);
 	}
 
+	attributeChangedCallback(name: string, _oldValue: string | null, newValue: string | null) {
+		// console.log('[%s] %s : %s => %s', this.constructor.name, name, _oldValue, _newValue);
+		if (name === 'collapse') {
+		} else if (name === 'direction') {
+			if (newValue) {
+				this.$header.setAttribute('direction', newValue || 'bottom');
+			} else {
+				this.setAttribute('direction', 'bottom');
+			}
+		} else {
+			console.warn('Unknown change key: %s', name);
+		}
+	}
+
 	@GetterSetter(DOMGetterSetter.boolean) public declare collapse: boolean;
+	@GetterSetter(DOMGetterSetter.enumerate(ViewDirection, ViewDirection.bottom))
+	public declare direction: ViewDirection;
 }

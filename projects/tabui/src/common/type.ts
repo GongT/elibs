@@ -6,3 +6,10 @@ export interface ITabConfig {
 	detachable?: boolean;
 	movable?: boolean;
 }
+
+export enum ViewDirection {
+	left = 'left',
+	right = 'right',
+	top = 'top',
+	bottom = 'bottom',
+}

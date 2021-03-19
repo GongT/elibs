@@ -1,4 +1,3 @@
-@import './styles/icons';
 @import './styles/colors';
 @import './styles/direction.leftright';
 @import './styles/direction.topbottom';
@@ -8,15 +7,23 @@ $fontSizeIcon: 16px;
 $tabPadding: 7px;
 $borderWidth: 1px;
 
-@mixin iconBase($size: 1em) {
+@mixin iconBase($size: 0.8em) {
 	width: $size;
 	height: $size;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: contain;
+	box-sizing: content-box;
+	text-align: center;
+	vertical-align: middle;
+	padding: $size * 0.1;
+	> svg {
+		vertical-align: text-top;
+		width: $size;
+		height: $size;
+	}
 }
 
 tab-container {
+	max-height: 100%;
+	max-width: 100%;
 	display: flex;
 
 	&[direction='bottom'] {
@@ -40,6 +47,10 @@ tab-container {
 		display: none !important;
 	}
 
+	svg {
+		fill: var(--handle-color);
+	}
+
 	> tab-header {
 		user-select: none;
 		display: flex;
@@ -48,46 +59,63 @@ tab-container {
 		background-color: var(--background);
 		color: var(--foreground);
 
-		> tab-switch {
-			font-size: $fontSize;
-			line-height: $fontSizeIcon;
+		> .tabs {
+			white-space: nowrap;
+			overflow: hidden;
+			position: relative;
+			> tab-switch {
+				font-size: $fontSize;
+				line-height: $fontSizeIcon;
 
-			display: inline-flex;
-			flex-direction: column;
-			justify-content: center;
-			cursor: pointer;
-			text-align: left;
+				display: inline-flex;
+				flex-direction: column;
+				justify-content: center;
+				cursor: pointer;
+				text-align: left;
 
-			&[active] {
-				cursor: default;
-				background-color: var(--background-active);
-				color: var(--foreground-active);
-			}
-			&:not([active]):hover {
-				background-color: var(--background-hover);
-				color: var(--foreground-hover);
-			}
-			&.click-down {
-				background-color: var(--background-click) !important;
-				color: var(--foreground-click) !important;
-			}
-			&.drag {
-				border-color: transparent !important;
-				background-color: var(--background) !important;
-				color: var(--foreground) !important;
-			}
-
-			> .vparent {
-				display: flex;
-				> .icon {
-					@include iconBase($fontSizeIcon);
+				&[active] {
+					cursor: default;
+					background-color: var(--background-active);
+					color: var(--foreground-active);
+				}
+				&:not([active]):hover {
+					background-color: var(--background-hover);
+					color: var(--foreground-hover);
+				}
+				&.click-down {
+					background-color: var(--background-click) !important;
+					color: var(--foreground-click) !important;
+				}
+				&.drag {
+					border-color: transparent !important;
+					background-color: var(--background) !important;
+					color: var(--foreground) !important;
 				}
 
-				> .close {
-					flex-direction: row;
-					font-size: $fontSizeIcon;
-					@include iconBase();
-					@include closeIcon();
+				> .vparent {
+					display: flex;
+					overflow: visible;
+					white-space: nowrap;
+					> .icon {
+						@include iconBase($fontSizeIcon);
+					}
+
+					> .close {
+						flex-direction: row;
+						font-size: $fontSizeIcon;
+						@include iconBase();
+
+						&:hover {
+							> .normal {
+								display: none;
+							}
+						}
+						&:not(:hover) {
+							> .hover {
+								display: none;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -101,22 +129,28 @@ tab-container {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			> button {
-				font-size: $fontSize + 7;
-				background: transparent;
-				border: transparent $borderWidth solid;
-				outline: transparent;
 
-				color: var(--button-color);
-				padding: 3px;
+			> .vparent {
+				display: flex;
+				flex-direction: row;
+				white-space: nowrap;
 
-				&:hover {
-					border: var(--button-color-border) $borderWidth solid;
+				> button {
+					margin-left: 2px;
+					font-size: $fontSize + 7;
+					background: transparent;
+					border: transparent $borderWidth solid;
+					outline: transparent;
+
+					color: var(--button-color);
+
+					&:hover {
+						border: var(--button-color-border) $borderWidth solid;
+					}
+
+					cursor: pointer;
+					@include iconBase();
 				}
-
-				cursor: pointer;
-				@include iconBase();
-				@include menuIcon();
 			}
 		}
 	}

@@ -4,15 +4,17 @@
 		writing-mode: vertical-rl;
 		text-orientation: mixed;
 
-		> tab-switch {
-			padding: 9px 0;
-			width: $fontSizeIcon + $tabPadding * 2;
-			border-top: var(--border) $borderWidth solid;
+		> .tabs {
+			> tab-switch {
+				padding: 9px 0;
+				width: $fontSizeIcon + $tabPadding * 2;
+				border-top: var(--border) $borderWidth solid;
 
-			> .vparent {
-				> .close {
-					margin-top: 0.6em;
-					margin-bottom: -0.2em;
+				> .vparent {
+					> .close {
+						margin-top: 0.6em;
+						margin-bottom: -0.2em;
+					}
 				}
 			}
 		}
@@ -31,9 +33,11 @@
 			border-right: var(--border) $borderWidth solid;
 			border-left: var(--border) $borderWidth solid;
 		}
-		> tab-switch {
-			&[active] {
-				border-left: transparent $borderWidth solid;
+		> .tabs {
+			> tab-switch {
+				&[active] {
+					border-left: transparent $borderWidth solid;
+				}
 			}
 		}
 	}
@@ -45,9 +49,11 @@
 			border-left: var(--border) $borderWidth solid;
 			border-right: var(--border) $borderWidth solid;
 		}
-		> tab-switch {
-			&[active] {
-				border-right: transparent $borderWidth solid;
+		> .tabs {
+			> tab-switch {
+				&[active] {
+					border-right: transparent $borderWidth solid;
+				}
 			}
 		}
 	}

@@ -12,7 +12,7 @@ dependencies:
   electron: 12.0.1
   gulp: 4.0.2
   reflect-metadata: 0.1.13
-  scss: 0.2.4
+  sass: 1.32.8
   tslib: 2.1.0
   ttypescript: 1.5.12_typescript@4.2.3
   typescript: 4.2.3
@@ -4444,6 +4444,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
+  /sass/1.32.8:
+    dependencies:
+      chokidar: 2.1.8
+    dev: false
+    engines:
+      node: '>=8.9.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-Sl6mIeGpzjIUZqvKnKETfMf0iDAswD9TNlv13A7aAF3XZlRPMq4VvJWBC2N2DXbp94MQVdNSFG6LfF/iOXrPHQ==
   /scss/0.2.4:
     dependencies:
       ometa: 0.2.2
@@ -5556,6 +5565,7 @@ packages:
       electron-drag-drop: 1.1.0
       gulp: 4.0.2
       reflect-metadata: 0.1.13
+      sass: 1.32.8
       scss: 0.2.4
       serve: 11.3.2
       tslib: 2.1.0
@@ -5564,7 +5574,7 @@ packages:
     dev: false
     name: '@rush-temp/tabui'
     resolution:
-      integrity: sha512-SCTB2Mc6Xa39KNWul+51WygxXEUyq5mmd/SLA7makIeEp/PiV3UKOex3MWuGKoFzjCjznS1k/jIfUdPzqixfHQ==
+      integrity: sha512-hYmZosQ45HUf4YyL7O8Mkgcj6xL5PBqh8zzoZRGzKiHXt0NMJBi/GatDsMa0iKGDafuOxjlo3JRIsEXZ9OCcjw==
       tarball: 'file:projects/tabui.tgz'
     version: 0.0.0
   'file:projects/window-manager.tgz':
@@ -5615,7 +5625,7 @@ specifiers:
   electron: ^12.0.1
   gulp: ^4.0.2
   reflect-metadata: ^0.1.13
-  scss: ^0.2.4
+  sass: ^1.32.8
   tslib: ^2.1.0
   ttypescript: ^1.5.12
   typescript: ^4.2.3
