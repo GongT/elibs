@@ -11,15 +11,26 @@
 				border-top: var(--border) $borderWidth solid;
 
 				> .vparent {
-					> .close {
-						margin-top: 0.6em;
-						margin-bottom: -0.2em;
+					> .vchild {
+						> .close {
+							margin-top: 0.6em;
+							margin-bottom: -0.2em;
+						}
 					}
 				}
 			}
 		}
 		> tab-menu {
 			padding: 4px 0;
+
+			> .vparent {
+				> .vchild {
+					> .left,
+					> .right {
+						transform: rotate(90deg);
+					}
+				}
+			}
 		}
 	}
 	> tab-body {

@@ -1,8 +1,11 @@
 import { DefineCustomElements } from '../common/custom-elements';
+import { DOMInit } from '../common/custom-lifecycle';
+import { handleDragOverEvent } from '../common/dom-drag-over';
 import { DOMEvent } from '../common/dom-event';
 import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
 import { IPanelMenuRequest, IPCID } from '../common/ipc.id';
 import { rendererInvoke } from '../common/ipc.renderer';
+import { TabDropZone } from './dropzone';
 
 const svgMenu = `<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 	<path d="M0 0h48v48h-48z" fill="none"/>
@@ -14,6 +17,7 @@ const svgRightArrow = `<svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.
 
 @DefineCustomElements()
 export class TabMenu extends HTMLElement {
+	private readonly $spacer = document.createElement('span') as HTMLSpanElement;
 	private readonly $button = document.createElement('button') as HTMLButtonElement;
 	private readonly $scrollLeft = document.createElement('button') as HTMLButtonElement;
 	private readonly $scrollRight = document.createElement('button') as HTMLButtonElement;
@@ -21,15 +25,42 @@ export class TabMenu extends HTMLElement {
 	constructor() {
 		super();
 
+		this.$spacer.className = 'spacer';
+
 		this.$scrollLeft.innerHTML = svgLeftArrow;
 		this.$scrollRight.innerHTML = svgRightArrow;
 		this.$button.innerHTML = svgMenu;
 
+		this.$scrollLeft.className = 'left';
+		this.$scrollRight.className = 'right';
+
 		const $vparent = document.createElement('div');
 		$vparent.className = 'vparent';
 
-		$vparent.append(this.$scrollLeft, this.$scrollRight, this.$button);
-		this.append($vparent);
+		const $vchild = document.createElement('div');
+		$vchild.className = 'vchild';
+
+		$vchild.append(this.$scrollLeft, this.$scrollRight, this.$button);
+		$vparent.append($vchild);
+		this.append(this.$spacer, $vparent);
+	}
+
+	@DOMInit()
+	protected onMounted() {
+		return handleDragOverEvent(this, this.handleDragEnter, this.handleDragLeave);
+	}
+
+	private handleDragEnter() {
+		TabDropZone.get().attachElement(this);
+	}
+
+	private handleDragLeave() {
+		TabDropZone.get().detachElement(this);
+	}
+
+	@DOMEvent({ targetProperty: '$spacer', preventDefault: true })
+	protected contextmenu({ x, y }: MouseEvent) {
+		rendererInvoke(IPCID.PanelMenu, { id: this.id, x, y } as IPanelMenuRequest);
 	}
 
 	@DOMEvent({ stopPropagation: true, eventName: 'click', targetProperty: '$button' })

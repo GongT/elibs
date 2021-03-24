@@ -1,31 +1,54 @@
-import { IDisposable } from '@idlebox/common';
 import { DefineCustomElements } from '../common/custom-elements';
-import { GetterSetter, DOMGetterSetter } from '../common/dom-getset';
+import { DOMEventTrigger } from '../common/dom-event-trigger';
+import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
 
-interface IRenderFunction {
-	(root: ShadowRoot): IDisposable;
+export interface IRenderEventData {
+	root: ShadowRoot;
 }
 
 @DefineCustomElements()
 export class TabView extends HTMLElement {
-	private firstRender: boolean = true;
-	private disposeRender?: IDisposable;
-	public render?: IRenderFunction;
+	private _shadowRoot?: ShadowRoot;
+	private renderState = false;
 
 	constructor() {
 		super();
 	}
 
 	private _render() {
-		const shadowRoot = this.attachShadow({ mode: 'closed' });
-		for (let n = 0; n < this.childNodes.length; n++) {
-			shadowRoot.appendChild(this.childNodes.item(n));
+		this._removeRender();
+
+		if (!this._shadowRoot) this._shadowRoot = this.attachShadow({ mode: 'closed' });
+
+		this._shadowRoot.innerHTML = '';
+		const notCaptured = this.renderEvent({ root: this._shadowRoot });
+
+		if (notCaptured) {
+			console.warn('tab view not rendered', this);
+			if (this._shadowRoot.innerHTML) {
+				throw new Error('render has done, but event.preventDefault() is not called.');
+			}
+			this._removeRender();
 		}
-		this.disposeRender = this.render?.(shadowRoot);
+		this.renderState = !notCaptured;
 	}
 
-	dispose() {
-		if (this.disposeRender) this.disposeRender.dispose();
+	disconnectedCallback() {
+		this._removeRender();
+	}
+
+	removeRender() {
+		this._removeRender();
+		this.removeAttribute('open');
+	}
+
+	private _removeRender() {
+		if (this.renderState) {
+			this.disposeEvent();
+			if (this._shadowRoot!.innerHTML) {
+				console.warn('not cleanup after dispose');
+			}
+		}
 	}
 
 	attributeChangedCallback(name: string, _oldValue: string | null, newValue: string | null) {
@@ -33,10 +56,7 @@ export class TabView extends HTMLElement {
 		if (name === 'open') {
 			const bValue = DOMGetterSetter.boolean.get(newValue);
 			if (bValue) {
-				if (this.firstRender) {
-					this.firstRender = false;
-					this._render();
-				}
+				if (!this._shadowRoot) this._render();
 			}
 		} else {
 			console.warn('Unknown change key: %s', name);
@@ -44,4 +64,8 @@ export class TabView extends HTMLElement {
 	}
 
 	@GetterSetter(DOMGetterSetter.boolean(false)) public declare open: boolean;
+	@DOMEventTrigger({ eventName: 'render', bubbles: true, cancelable: true })
+	private declare renderEvent: DOMEventTrigger<IRenderEventData>;
+	@DOMEventTrigger({ eventName: 'dispose', bubbles: true, cancelable: true })
+	private declare disposeEvent: DOMEventTrigger<void>;
 }

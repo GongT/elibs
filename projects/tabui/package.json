@@ -25,10 +25,10 @@
 		"test": "build-script test",
 		"upgrade": "build-script upgrade",
 		"watch": "build-script watch",
-		"serve": "electron --no-sandbox tests/main.cjs"
+		"start": "electron --no-sandbox tests/main.cjs"
 	},
 	"dependencies": {
-		"@idlebox/common": "^1.1.4",
+		"@idlebox/common": "^1.1.5",
 		"reflect-metadata": "^0.1.13",
 		"sass": "^1.32.8",
 		"tslib": "^2.1.0"

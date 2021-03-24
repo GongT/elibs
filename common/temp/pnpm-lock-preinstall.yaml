@@ -11,6 +11,8 @@ dependencies:
   baobab: 2.6.1
   electron: 12.0.1
   gulp: 4.0.2
+  react: 17.0.1
+  react-dom: 17.0.1_react@17.0.1
   reflect-metadata: 0.1.13
   sass: 1.32.8
   tslib: 2.1.0
@@ -2788,6 +2790,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-o6vicYryQaKykE+EpiWXDzia4yo=
+  /js-tokens/4.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
   /js-yaml/4.0.0:
     dependencies:
       argparse: 2.0.1
@@ -3029,6 +3035,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+  /loose-envify/1.4.0:
+    dependencies:
+      js-tokens: 4.0.0
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   /lowercase-keys/1.0.1:
     dev: false
     engines:
@@ -4126,6 +4139,26 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==
+  /react-dom/17.0.1_react@17.0.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      react: 17.0.1
+      scheduler: 0.20.1
+    dev: false
+    peerDependencies:
+      react: 17.0.1
+    resolution:
+      integrity: sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug==
+  /react/17.0.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
   /read-package-json-fast/2.0.2:
     dependencies:
       json-parse-even-better-errors: 2.3.1
@@ -4453,6 +4486,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-Sl6mIeGpzjIUZqvKnKETfMf0iDAswD9TNlv13A7aAF3XZlRPMq4VvJWBC2N2DXbp94MQVdNSFG6LfF/iOXrPHQ==
+  /scheduler/0.20.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: false
+    resolution:
+      integrity: sha512-LKTe+2xNJBNxu/QhHvDR14wUXHRQbVY5ZOYpOGWRzhydZUqrLb2JBvLPY7cAqFmqrWuDED0Mjk7013SZiOz6Bw==
   /scss/0.2.4:
     dependencies:
       ometa: 0.2.2
@@ -5564,6 +5604,8 @@ packages:
       electron: 12.0.1
       electron-drag-drop: 1.1.0
       gulp: 4.0.2
+      react: 17.0.1
+      react-dom: 17.0.1_react@17.0.1
       reflect-metadata: 0.1.13
       sass: 1.32.8
       scss: 0.2.4
@@ -5574,7 +5616,7 @@ packages:
     dev: false
     name: '@rush-temp/tabui'
     resolution:
-      integrity: sha512-hYmZosQ45HUf4YyL7O8Mkgcj6xL5PBqh8zzoZRGzKiHXt0NMJBi/GatDsMa0iKGDafuOxjlo3JRIsEXZ9OCcjw==
+      integrity: sha512-8gv7SAdodwQ9LYSwpOB+qCvYfcVjT0PZiO/08efyT+uH0hVMnCa64NL8Unc2xvrCwQJruq3sYYNnrpAWB5jAOg==
       tarball: 'file:projects/tabui.tgz'
     version: 0.0.0
   'file:projects/window-manager.tgz':
@@ -5624,6 +5666,8 @@ specifiers:
   baobab: ^2.6.1
   electron: ^12.0.1
   gulp: ^4.0.2
+  react: ^17.0.1
+  react-dom: ^17.0.1
   reflect-metadata: ^0.1.13
   sass: ^1.32.8
   tslib: ^2.1.0

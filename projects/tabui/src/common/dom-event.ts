@@ -1,8 +1,10 @@
 import { addDisposableEventListener } from '@idlebox/common';
-
-export const domEventInitMetaKey = Symbol('eventDisposable');
+import { registerLifecycle } from './custom-lifecycle';
 
 interface IEventRegisterOptions {
+	capture: boolean;
+	once: boolean;
+	passive: boolean;
 	eventName: string;
 	stopPropagation: boolean;
 	preventDefault: boolean;
@@ -15,6 +17,9 @@ export function DOMEvent({
 	eventName,
 	preventDefault,
 	stopPropagation,
+	capture,
+	once,
+	passive,
 	targetProperty,
 	targetSelector,
 	target: $target,
@@ -24,16 +29,11 @@ export function DOMEvent({
 		propertyKey: string
 		// descriptor: TypedPropertyDescriptor<Function>
 	) {
-		if (!Reflect.hasMetadata(domEventInitMetaKey, target)) {
-			Reflect.defineMetadata(domEventInitMetaKey, [], target);
-		}
-
 		if (!eventName) {
 			eventName = propertyKey.toLowerCase();
 		}
 
-		const callbacks: Function[] = Reflect.getMetadata(domEventInitMetaKey, target);
-		callbacks.push(function eventRegister(this: T) {
+		registerLifecycle(target, function DOMEventHandler(this: T) {
 			// console.log('register event callback [%s] <%O>', eventName, this);
 			let target: HTMLElement | Window;
 			if ($target) {
@@ -46,7 +46,7 @@ export function DOMEvent({
 				target = this;
 			}
 
-			return addDisposableEventListener(target, eventName!, (e: Event) => {
+			return addDisposableEventListener(target, eventName!, { capture, once, passive }, (e: Event) => {
 				if (stopPropagation) {
 					e.stopImmediatePropagation();
 					e.preventDefault();

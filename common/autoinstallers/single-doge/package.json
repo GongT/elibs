@@ -4,7 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@build-script/rush-tools": "latest",
-		"@build-script/single-dog-asset": "latest",
+		"@build-script/single-dog-asset": "^1.0.11",
 		"@build-script/poormans-package-change": "latest"
 	}
 }

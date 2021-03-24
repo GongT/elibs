@@ -1,14 +1,15 @@
+import { IDisposable } from '@idlebox/common';
 import { DefineCustomElements } from '../common/custom-elements';
 import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
 import { __defineTabId, __getTabId } from '../common/helper';
-import { ITabConfig } from '../common/type';
-import { TabView } from './view';
+import { IMainRenderFunction, ITabConfig } from '../common/type';
+import { IRenderEventData, TabView } from './view';
 
 @DefineCustomElements()
 export class TabBody extends HTMLElement {
 	private $last?: Element;
 	private readonly observer = new MutationObserver(this.updateChildStatus.bind(this));
-	private childs: Record<number, Element> = {};
+	private childs: Record<number, TabView> = {};
 
 	attributeChangedCallback(name: string, _oldValue: string | null, _newValue: string | null) {
 		// console.log('[%s] %s : %s => %s', this.constructor.name, name, _oldValue, _newValue);
@@ -46,12 +47,12 @@ export class TabBody extends HTMLElement {
 	}
 
 	private updateChildStatus() {
-		const childs: Record<number, Element> = {};
+		const childs: Record<number, TabView> = {};
 		for (let n = 0; n < this.children.length; n++) {
 			const node = this.children.item(n)!;
 			if (node.tagName === 'TAB-VIEW') {
 				const id = __getTabId(node);
-				childs[id] = node;
+				childs[id] = node as TabView;
 			}
 		}
 		this.childs = childs;
@@ -60,6 +61,9 @@ export class TabBody extends HTMLElement {
 
 	disconnectedCallback() {
 		// console.log('disconnectedCallback:%s', this.isConnected);
+		for (const tab of Object.values<TabView>(this.childs)) {
+			tab.removeRender();
+		}
 		this.observer.disconnect();
 	}
 
@@ -67,9 +71,34 @@ export class TabBody extends HTMLElement {
 		this.observer.observe(this, { childList: true });
 	}
 
-	addTab(tabId: number, _options: ITabConfig) {
+	addTab(tabId: number, { render, ...options }: ITabConfig) {
 		const newView = new TabView();
+
+		let dis: IDisposable;
+		let renderFn: IMainRenderFunction;
+		if (typeof render === 'string') {
+			renderFn = require(render).render;
+		} else {
+			renderFn = render;
+		}
+
 		__defineTabId(newView, tabId);
+		newView.addEventListener('render', (e: any) => {
+			const { root } = (e as CustomEvent).detail as IRenderEventData;
+
+			dis = renderFn(tabId, root, options, (e.target as HTMLElement).dataset);
+
+			if (!dis || !dis.dispose) {
+				throw new Error('render function not return disposable object');
+			}
+			e.preventDefault();
+			e.stopPropagation();
+		});
+		newView.addEventListener('dispose', () => {
+			console.log('dispose call!');
+			dis.dispose();
+		});
+
 		this.append(newView);
 		return newView;
 	}

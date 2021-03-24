@@ -13,9 +13,9 @@
  * "rush update --full" so that PNPM will recalculate all version selections.
  */
 module.exports = {
-	hooks: {
-		readPackage,
-	},
+  hooks: {
+    readPackage
+  }
 };
 
 /**
@@ -27,11 +27,12 @@ module.exports = {
  * The return value is the updated object.
  */
 function readPackage(packageJson, context) {
-	// // The karma types have a missing dependency on typings from the log4js package.
-	// if (packageJson.name === '@types/karma') {
-	//  context.log('Fixed up dependencies for @types/karma');
-	//  packageJson.dependencies['log4js'] = '0.6.38';
-	// }
 
-	return packageJson;
+  // // The karma types have a missing dependency on typings from the log4js package.
+  // if (packageJson.name === '@types/karma') {
+  //  context.log('Fixed up dependencies for @types/karma');
+  //  packageJson.dependencies['log4js'] = '0.6.38';
+  // }
+
+  return packageJson;
 }

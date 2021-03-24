@@ -1,16 +1,16 @@
 import { DefineCustomElements } from '../common/custom-elements';
 import { DOMEvent } from '../common/dom-event';
 import { DOMGetterSetter, getCustomProperties, GetterSetter } from '../common/dom-getset';
+import { DragSourceKind, setDndData } from '../common/drag-and-drop';
 import { __defineTabId, __getTabId } from '../common/helper';
-import { IPanelMenuRequest, IPCID } from '../common/ipc.id';
-import { DND_TYPE_ID, rendererInvoke } from '../common/ipc.renderer';
-import { ITabConfig } from '../common/type';
+import { IPCID } from '../common/ipc.id';
+import { rendererInvoke } from '../common/ipc.renderer';
+import { ITabConfig, serializeRenderFunction } from '../common/type';
 import { TabMenu } from './menu';
 import { TabSwitch } from './switch';
 
 @DefineCustomElements()
 export class TabHeader extends HTMLElement {
-	private readonly $spacer = document.createElement('span') as HTMLSpanElement;
 	private readonly $scroller = document.createElement('div') as HTMLDivElement;
 	private readonly $menu: TabMenu;
 	private readonly childsChangeObserver = new MutationObserver(this.updateChildStatus.bind(this));
@@ -22,41 +22,45 @@ export class TabHeader extends HTMLElement {
 
 	constructor() {
 		super();
-		this.$spacer.className = 'spacer';
-		this.$spacer.draggable = true;
 
 		this.$scroller.className = 'tabs';
 
 		this.$menu = new TabMenu();
 
 		this.innerHTML = '';
-		this.append(this.$scroller, this.$spacer, this.$menu);
+		this.append(this.$scroller, this.$menu);
 	}
 
-	@DOMEvent({ targetProperty: '$spacer', eventName: 'dragstart' })
-	onMenuButtonDragStart(e: DragEvent) {
-		return this.onTitleBarDragStart(e);
-	}
-
-	@DOMEvent({ targetProperty: '$spacer', eventName: 'dragstart' })
-	onTitleBarDragStart({ dataTransfer, offsetX: x, offsetY: y }: DragEvent) {
-		if (!dataTransfer) {
+	@DOMEvent({ targetProperty: '$menu', eventName: 'dragstart', capture: true })
+	onTitleBarDragStart({ target, dataTransfer, offsetX: x, offsetY: y }: DragEvent) {
+		if (!dataTransfer || !target) {
 			debugger;
 			return;
 		}
 		dataTransfer.effectAllowed = 'move';
+		if (this.vertical) {
+			y += (target as HTMLElement).offsetTop;
+		} else {
+			x += (target as HTMLElement).offsetLeft;
+		}
+
 		this.classList.add('drag');
-		dataTransfer.setDragImage(this, x + this.$spacer.offsetLeft, y);
+
+		// TODO: custom styles
+		dataTransfer.setDragImage(this, x, y);
 		setTimeout(() => {
 			this.classList.remove('drag');
 		}, 50);
-		dataTransfer.clearData();
-		dataTransfer.setData(DND_TYPE_ID, this.childs.map(__getTabId).join(','));
-	}
 
-	@DOMEvent({ targetProperty: '$spacer', preventDefault: true })
-	protected contextmenu({ x, y }: MouseEvent) {
-		rendererInvoke(IPCID.PanelMenu, { id: this.id, x, y } as IPanelMenuRequest);
+		dataTransfer.clearData();
+
+		setDndData(
+			dataTransfer,
+			{
+				tabs: this.childs.filter((e) => e.movable && e.detachable).map((e) => e.getState()),
+			},
+			DragSourceKind.multi
+		);
 	}
 
 	@DOMEvent({ eventName: 'switch' })
@@ -77,6 +81,12 @@ export class TabHeader extends HTMLElement {
 		} else {
 			this.$menu.removeAttribute('scroll-visible');
 		}
+	}
+
+	@DOMEvent({ targetProperty: '$scroller', eventName: 'wheel', preventDefault: true })
+	protected onTabScrollByWheel(e: WheelEvent) {
+		const dir = e.deltaX > 0 || e.deltaY > 0 ? '+' : '-';
+		this.onTabScroll(new CustomEvent('scroll', { detail: dir }));
 	}
 
 	@DOMEvent({ targetProperty: '$menu', eventName: 'scroll' })
@@ -156,6 +166,9 @@ export class TabHeader extends HTMLElement {
 			}
 		}
 		this.childs = childs;
+
+		this.$menu.draggable = this.childs.filter((e) => e.detachable && e.movable).length !== 0;
+
 		this._update();
 		// console.log('updateChildStatus:%s', childs.length);
 	}
@@ -171,7 +184,7 @@ export class TabHeader extends HTMLElement {
 		this.spaceResizeObserver.observe(this.$scroller);
 	}
 
-	async addTab(options: ITabConfig) {
+	async addTab(options: ITabConfig, position: number = -1) {
 		const newTab = new TabSwitch();
 
 		const tabId = await rendererInvoke(IPCID.GetNextTabGuid);
@@ -184,7 +197,13 @@ export class TabHeader extends HTMLElement {
 			}
 		}
 
-		this.$scroller.append(newTab);
+		newTab.dataset._tab_render = serializeRenderFunction(options.render);
+
+		if (this.childs[position]) {
+			this.$scroller.insertBefore(newTab, this.childs[position]);
+		} else {
+			this.$scroller.append(newTab);
+		}
 		return newTab;
 	}
 
@@ -194,6 +213,10 @@ export class TabHeader extends HTMLElement {
 		} else {
 			this.$scroller.scrollTo(pos, 0);
 		}
+	}
+
+	indexOf(itr: HTMLElement) {
+		return this.childs.indexOf(itr as TabSwitch);
 	}
 
 	attributeChangedCallback(name: string, _oldValue: string | null, _newValue: string | null) {

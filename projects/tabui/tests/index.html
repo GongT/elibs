@@ -30,59 +30,9 @@
 		<div id="tab4"></div>
 		<div id="tabN1"></div>
 		<script>
-			'use strict';
-			const { loadStyle, TabContainer } = require('@gongt/tabui');
-			loadStyle();
-
-			test(1, 'bottom');
-			test(2, 'left');
-			test(3, 'right');
-			test(4, 'top');
-
-			const tabE = new TabContainer();
-			document.getElementById('tabE').append(tabE);
-
-			const tabN = new TabContainer();
-			for (let i = 0; i < 20; i++) {
-				tabN.addTab({
-					title: 'Tab ' + i,
-				});
-			}
-			document.getElementById('tabN1').append(tabN);
-
-			const tabN2 = new TabContainer();
-			tabN2.direction = 'right';
-			for (let i = 0; i < 20; i++) {
-				tabN2.addTab({
-					title: 'Tab ' + i,
-				});
-			}
-			document.getElementById('tabN2').append(tabN2);
-
-			function test(num, dir) {
-				const tab = new TabContainer();
-				tab.direction = dir;
-				tab.addTab({
-					title: 'First Tab',
-				});
-				tab.addTab({
-					title: 'Unmovable',
-					movable: false,
-				});
-				tab.addTab({
-					title: 'Undetachable',
-					detachable: false,
-				});
-				tab.addTab({
-					title: 'With Img',
-					iconClass: 'testImage',
-				});
-				tab.addTab({
-					title: 'Pinned',
-					closable: false,
-				});
-				document.getElementById('tab' + num).append(tab);
-			}
+			const q = require('querystring').parse(location.search.slice(1));
+			document.title += ' ' + q.id;
+			require(`${__dirname}/window${q.id}.cjs`);
 		</script>
 	</body>
 </html>

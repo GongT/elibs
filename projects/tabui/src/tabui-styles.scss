@@ -51,10 +51,17 @@ tab-container {
 		fill: var(--handle-color);
 	}
 
+	.spacer {
+		display: inline-block;
+		flex: 1;
+	}
+
 	> tab-header {
+		position: relative;
 		user-select: none;
 		display: flex;
 		flex-direction: row;
+		overflow: hidden;
 
 		background-color: var(--background);
 		color: var(--foreground);
@@ -88,8 +95,9 @@ tab-container {
 				}
 				&.drag {
 					border-color: transparent !important;
-					background-color: var(--background) !important;
-					color: var(--foreground) !important;
+					background-color: var(--background-active) !important;
+					color: var(--foreground-active) !important;
+					opacity: 0.4;
 				}
 
 				> .vparent {
@@ -120,36 +128,38 @@ tab-container {
 			}
 		}
 
-		> .spacer {
-			display: inline-block;
-			flex: 1;
-		}
-
 		> tab-menu {
 			display: flex;
-			flex-direction: column;
-			justify-content: center;
+			flex-direction: row;
+			justify-content: flex-end;
+			flex-grow: 1;
 
 			> .vparent {
 				display: flex;
-				flex-direction: row;
-				white-space: nowrap;
+				flex-direction: column;
+				justify-content: center;
 
-				> button {
-					margin-left: 2px;
-					font-size: $fontSize + 7;
-					background: transparent;
-					border: transparent $borderWidth solid;
-					outline: transparent;
+				> .vchild {
+					display: flex;
+					flex-direction: row;
+					white-space: nowrap;
 
-					color: var(--button-color);
+					> button {
+						margin-left: 2px;
+						font-size: $fontSize + 7;
+						background: transparent;
+						border: transparent $borderWidth solid;
+						outline: transparent;
 
-					&:hover {
-						border: var(--button-color-border) $borderWidth solid;
+						color: var(--button-color);
+
+						&:hover {
+							border: var(--button-color-border) $borderWidth solid;
+						}
+
+						cursor: pointer;
+						@include iconBase();
 					}
-
-					cursor: pointer;
-					@include iconBase();
 				}
 			}
 		}
@@ -164,5 +174,17 @@ tab-container {
 				display: block;
 			}
 		}
+	}
+}
+
+#tabui-drop-zone {
+	position: absolute;
+	z-index: 10000000;
+	display: block;
+	&.left {
+		border-left: 5px solid var(--drop-line);
+	}
+	&.top {
+		border-top: 5px solid var(--drop-line);
 	}
 }

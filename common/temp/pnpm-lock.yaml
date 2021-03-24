@@ -3,7 +3,7 @@ dependencies:
   '@build-script/export-all-in-one': 3.0.23_typescript@4.2.3
   '@build-script/single-dog-asset': 1.0.11
   '@build-script/typescript-transformer-dual-package': 1.0.20_1a1c0a92b8be83cb14ee26aea136527d
-  '@idlebox/common': 1.1.4
+  '@idlebox/common': 1.1.5
   '@idlebox/node': 1.0.27
   '@idlebox/state': 0.0.2
   '@rush-temp/tabui': file:projects/tabui.tgz
@@ -115,6 +115,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-SsHb5ANekniKhrwc9xWwUB3lGw1/iH6Ozg7uLaFiEejMUcJ80dKs0VxXJ1roF1fWBpOaIcZfDA/T/lVthyAa5g==
+  /@idlebox/common/1.1.5:
+    dependencies:
+      source-map-support: 0.5.19
+      tslib: 2.1.0
+    dev: false
+    resolution:
+      integrity: sha512-AEueWkmIcyUq/6Gz/y0XcM76MRzEkZ+Km9siLp3gR5ckHdkl0lYubz4iWfk03z2djTO+3WqfenYv0sT9h8iG/g==
   /@idlebox/ensure-symlink/1.0.16:
     dependencies:
       fs-extra: 9.1.0
@@ -5600,7 +5607,7 @@ packages:
       '@build-script/builder': 2.1.8_gulp@4.0.2
       '@build-script/single-dog-asset': 1.0.11
       '@build-script/typescript-transformer-dual-package': 1.0.20_1a1c0a92b8be83cb14ee26aea136527d
-      '@idlebox/common': 1.1.4
+      '@idlebox/common': 1.1.5
       electron: 12.0.1
       electron-drag-drop: 1.1.0
       gulp: 4.0.2
@@ -5616,7 +5623,7 @@ packages:
     dev: false
     name: '@rush-temp/tabui'
     resolution:
-      integrity: sha512-8gv7SAdodwQ9LYSwpOB+qCvYfcVjT0PZiO/08efyT+uH0hVMnCa64NL8Unc2xvrCwQJruq3sYYNnrpAWB5jAOg==
+      integrity: sha512-Nx6EetghtZ0l++aeYoN8J7R/WgKsEYjWQJIuhayYpebjAHn/M8EJd8Ifbq15GQUkDEiXJh9+L1DyGQrlYjgOcw==
       tarball: file:projects/tabui.tgz
     version: 0.0.0
   file:projects/window-manager.tgz:
@@ -5625,7 +5632,7 @@ packages:
       '@build-script/export-all-in-one': 3.0.23_typescript@4.2.3
       '@build-script/single-dog-asset': 1.0.11
       '@build-script/typescript-transformer-dual-package': 1.0.20_1a1c0a92b8be83cb14ee26aea136527d
-      '@idlebox/common': 1.1.4
+      '@idlebox/common': 1.1.5
       '@idlebox/node': 1.0.27
       '@idlebox/state': 0.0.2
       baobab: 2.6.1
@@ -5637,7 +5644,7 @@ packages:
     dev: false
     name: '@rush-temp/window-manager'
     resolution:
-      integrity: sha512-a9CrVW4HQY/4eyr+32f4JTSEmMOLVMggoQfrjVYjyg5+Oq1Is+VRwBo6yKLeX0+py1GZLahNQGo7wbSpQSyQsg==
+      integrity: sha512-VryEyAjXLAX+SeRdr9yfCkLL2MDAQpnfVJZtMXme2G1NWNo4r9ydiCmh8OWh3vr+NfSs4mLzlD2etNPY9QoBVA==
       tarball: file:projects/window-manager.tgz
     version: 0.0.0
   github.com/meteor/node-kexec/f29f54037c7db6ad29e1781463b182e5929215a0:
@@ -5658,7 +5665,7 @@ specifiers:
   '@build-script/export-all-in-one': ^3.0.23
   '@build-script/single-dog-asset': ^1.0.11
   '@build-script/typescript-transformer-dual-package': ^1.0.20
-  '@idlebox/common': ^1.1.4
+  '@idlebox/common': ^1.1.5
   '@idlebox/node': ^1.0.27
   '@idlebox/state': ^0.0.2
   '@rush-temp/tabui': file:./projects/tabui.tgz

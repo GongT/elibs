@@ -9,8 +9,10 @@
 				border-right: var(--border) $borderWidth solid;
 
 				> .vparent {
-					> .close {
-						margin-left: 1em;
+					> .vchild {
+						> .close {
+							margin-left: 1em;
+						}
 					}
 				}
 			}

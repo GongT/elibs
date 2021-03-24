@@ -8,6 +8,14 @@ export function DOMSetAttribute(dom: HTMLElement, qualifiedName: string, value: 
 	}
 }
 
+export function DOMSetBooleanAttribute(dom: HTMLElement, qualifiedName: string, value: boolean) {
+	if (value) {
+		dom.setAttribute(qualifiedName, '');
+	} else {
+		dom.removeAttribute(qualifiedName);
+	}
+}
+
 export function getCustomProperties<T>(instance: T): keyof T {
 	return Reflect.getMetadata(getterSetterMetaKey, instance);
 }

@@ -23,3 +23,16 @@ export function __getTabId(sw: Element): number {
 	}
 	return r;
 }
+
+/**
+ * @internal
+ */
+export function definePublicConstant(object: any, propertyKey: string | symbol, value: any) {
+	delete object[propertyKey];
+	Object.defineProperty(object, propertyKey, {
+		configurable: false,
+		enumerable: true,
+		writable: false,
+		value,
+	});
+}

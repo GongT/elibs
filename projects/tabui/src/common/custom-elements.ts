@@ -1,18 +1,39 @@
-import { Disposable, linux_case_hyphen } from '@idlebox/common';
-import { domEventInitMetaKey } from './dom-event';
+import { linux_case_hyphen } from '@idlebox/common';
+import { __callLifecycleCallbacks, disposeLifecycle, registerLifecycle } from './custom-lifecycle';
 import { defauleValueMetaKey, DOMSetAttribute, getterSetterMetaKey } from './dom-getset';
+import { definePublicConstant } from './helper';
 
 const firstMountSymbol = Symbol('custom-element-first-connect');
 const initStateSymbol = Symbol.for('@tabui/init');
 
+export function isFirstMount(ele: HTMLElement) {
+	return (ele as any)[firstMountSymbol] === undefined;
+}
+
 export function DefineCustomElements(options?: ElementDefinitionOptions) {
-	return function <T extends typeof HTMLElement>(elementConstructor: T) {
+	return function DefineCustomElementsDecorator(elementConstructor: typeof HTMLElement) {
 		const anyCtor = elementConstructor as any;
 		const proto = elementConstructor.prototype;
 		const anyProto = proto as any;
 		const name = linux_case_hyphen(elementConstructor.name);
 		// console.log('define:%s', name, options);
 
+		///[*] changing native behavior
+		if (anyProto.attributeChangedCallback) {
+			const orignal = anyProto.attributeChangedCallback;
+			anyProto.attributeChangedCallback = function wrappedAttributeChangedCallback(
+				name: string,
+				ov: any,
+				nv: any
+			) {
+				// console.log('[%s] %s : %s{%s} => %s{%s}', elementConstructor.name, name, ov, typeof ov, nv, typeof nv);
+				if (ov !== nv) {
+					orignal.call(this, name, ov, nv);
+				}
+			};
+		}
+
+		///[*] CustomKeys - from dom-getset
 		const customValueKeys: string[] | undefined = Reflect.getMetadata(getterSetterMetaKey, proto);
 		const originalCustomValueKeys = anyCtor.observedAttributes || [];
 		Object.defineProperty(elementConstructor, 'observedAttributes', {
@@ -21,100 +42,55 @@ export function DefineCustomElements(options?: ElementDefinitionOptions) {
 			writable: false,
 			value: originalCustomValueKeys.concat(customValueKeys || []),
 		});
-		// console.log((elementConstructor as any).observedAttributes);
+		// console.log(anyCtor.observedAttributes);
 
-		if (anyProto.attributeChangedCallback) {
-			const orignal = anyProto.attributeChangedCallback;
-			anyProto.attributeChangedCallback = function wrappedAttributeChangedCallback(
-				name: string,
-				oldVal: any,
-				newVal: any
-			) {
-				// console.log(
-				// 	'[%s] %s : %s{%s} => %s{%s}',
-				// 	elementConstructor.name,
-				// 	name,
-				// 	oldVal,
-				// 	typeof oldVal,
-				// 	newVal,
-				// 	typeof newVal
-				// );
-				if (oldVal !== newVal) {
-					orignal.call(this, name, oldVal, newVal);
-				}
-			};
-		}
-
+		///[*] CustomKeys (default value) - from dom-getset
 		const customValueDefaults: Record<string, Function> | undefined = Reflect.getMetadata(
 			defauleValueMetaKey,
 			proto
 		);
+		if (customValueKeys && (customValueDefaults || anyProto.attributeChangedCallback)) {
+			registerLifecycle(proto, function (this: HTMLElement) {
+				if (!isFirstMount(this)) return;
 
-		const eventCallbacks = Reflect.getMetadata(domEventInitMetaKey, proto) as Function[];
-		const domEventDisposableSymbol = Symbol.for('domEventDisposable');
-
-		const originalConnectedCallback: Function = (proto as any).connectedCallback;
-		delete (proto as any).connectedCallback;
-		Object.defineProperty(proto, 'connectedCallback', {
-			configurable: false,
-			enumerable: true,
-			writable: false,
-			value: function connectedCallback(this: InstanceType<T>) {
-				const anyThis = this as any;
-				if (!this.isConnected) {
-					anyThis.disconnectedCallback();
-					return;
-				}
-
-				if (eventCallbacks && eventCallbacks.length) {
-					if (anyThis[domEventDisposableSymbol]) {
-						anyThis[domEventDisposableSymbol].dispose();
-					}
-					anyThis[domEventDisposableSymbol] = new Disposable();
-					for (const cb of eventCallbacks) {
-						anyThis[domEventDisposableSymbol]._register(cb.call(this));
-					}
-				}
-
-				if (
-					anyThis[firstMountSymbol] === undefined &&
-					customValueKeys &&
-					(customValueDefaults || anyThis.attributeChangedCallback)
-				) {
-					for (const key of customValueKeys) {
-						if (!this.hasAttribute(key)) {
-							if (customValueDefaults && customValueDefaults[key]) {
-								DOMSetAttribute(this, key, customValueDefaults[key]());
-							} else if (anyThis.attributeChangedCallback) {
-								anyThis.attributeChangedCallback.call(this, key, initStateSymbol, null);
-							}
+				for (const key of customValueKeys) {
+					if (!this.hasAttribute(key)) {
+						if (customValueDefaults && customValueDefaults[key]) {
+							DOMSetAttribute(this, key, customValueDefaults[key].call(this));
+						} else if ((this as any).attributeChangedCallback) {
+							(this as any).attributeChangedCallback.call(this, key, initStateSymbol, null);
 						}
 					}
 				}
+			});
+		}
 
-				anyThis[firstMountSymbol] = false;
+		///[*] Connect Callback - from custom-lifecycle
+		const originalConnectedCallback: () => undefined = anyProto.connectedCallback;
+		if (originalConnectedCallback) {
+			registerLifecycle(proto, originalConnectedCallback);
+			delete anyProto.connectedCallback;
+		}
+		definePublicConstant(proto, 'connectedCallback', function connectedCallback(this: HTMLElement) {
+			const anyThis = this as any;
+			if (!this.isConnected) {
+				anyThis.disconnectedCallback();
+				return;
+			}
 
-				if (originalConnectedCallback) originalConnectedCallback.call(this);
-			},
+			__callLifecycleCallbacks(this);
+
+			anyThis[firstMountSymbol] = false;
 		});
 
+		///[*] Disconnect Callback - from custom-lifecycle
 		const originalDisconnectedCallback: Function = (proto as any).disconnectedCallback;
-		delete (proto as any).disconnectedCallback;
-		Object.defineProperty(proto, 'disconnectedCallback', {
-			configurable: false,
-			enumerable: true,
-			writable: false,
-			value: function disconnectedCallback() {
-				if (originalDisconnectedCallback) originalDisconnectedCallback.call(this);
-
-				if ((this as any)[domEventDisposableSymbol]) {
-					(this as any)[domEventDisposableSymbol].dispose();
-					(this as any)[domEventDisposableSymbol] = undefined;
-				}
-			},
+		definePublicConstant(proto, 'disconnectedCallback', function disconnectedCallback(this: HTMLElement) {
+			if (originalDisconnectedCallback) originalDisconnectedCallback.call(this);
+			disposeLifecycle(this);
 		});
 
-		// must last line
+		///[*] Final register to window - must last line
 		customElements.define(name, elementConstructor, options);
 	};
 }
