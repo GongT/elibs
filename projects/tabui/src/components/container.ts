@@ -3,14 +3,17 @@ import { DOMEvent } from '../common/dom-event';
 import { DOMGetterSetter, DOMSetBooleanAttribute, GetterSetter } from '../common/dom-getset';
 import {
 	attachMoreDndData,
+	checkAllTabsUndetachable,
 	checkPanelId,
 	DragSourceKind,
 	getDndKind,
 	hasDndData,
+	markAllTabsUndetachable,
 	markPanelId,
 	parseDndData,
 } from '../common/drag-and-drop';
 import { __getTabId } from '../common/helper';
+import { closeTabInOtherWindow, WindowId } from '../common/ipc.renderer';
 import { ITabConfig, ViewDirection } from '../common/type';
 import { TabBody } from './body';
 import { TabHeader } from './header';
@@ -47,57 +50,84 @@ export class TabContainer extends HTMLElement {
 
 	@DOMEvent({})
 	protected dragstart(e: DragEvent) {
-		attachMoreDndData(e.dataTransfer, { panelId: this.getAttribute('id')! });
+		const data = attachMoreDndData(e.dataTransfer, { panelId: this.getAttribute('id')!, windowId: WindowId });
+		if (!data) throw new Error('fatal, invalid program state!');
+
+		if (data.tabs.every((e) => !e.detachable)) {
+			markAllTabsUndetachable(e.dataTransfer);
+		}
+		for (const tab of data.tabs) {
+			Object.assign(tab, this.$body.getTabConfig(tab.tabId));
+		}
+		attachMoreDndData(e.dataTransfer, { tabs: data.tabs });
+
 		markPanelId(e.dataTransfer, this.getAttribute('id'));
 	}
 
-	@DOMEvent({ eventName: 'dragenter', capture: true })
-	protected onDragEnter(e: DragEvent) {
-		if (this.denyThisDrag(e)) return;
-	}
-
-	@DOMEvent({ capture: true })
+	@DOMEvent({})
 	protected drop(e: DragEvent) {
-		console.log('drop event:', e);
-		if (this.denyThisDrag(e)) return;
+		const data = parseDndData(e.dataTransfer)!;
+		const targetTab = this.$header.findTab(e.target as HTMLElement);
+		if (targetTab === undefined) {
+			console.log('not drop to valid area (eg. border)');
+			e.preventDefault();
+			return;
+		}
 
-		const tabs = parseDndData(e.dataTransfer)!.tabs;
-
-		e.stopPropagation();
-		this.insertDropTabs(e.target as any, tabs);
-	}
-
-	private insertDropTabs(from: HTMLElement, tabs: ReadonlyArray<Partial<ITabConfig>>) {
-		for (let itr = from; itr.parentElement; itr = itr.parentElement) {
-			if (itr.tagName === 'TAB-BODY' || itr.tagName === 'TAB-MENU') {
-				tabs.forEach((options: any) => this.addTab(options));
-				return;
-			} else if (itr.tagName === 'TAB-SWITCH') {
-				const index = this.$header.indexOf(itr);
-				tabs.forEach((options: any) => this.addTab(options, index));
-				return;
+		if (data.panelId === this.getAttribute('id')) {
+			if (checkPanelId(e.dataTransfer, this.getAttribute('id'))) {
+				const isDropIntoHeader = e.composedPath().find((ele) => (ele as HTMLElement).tagName === 'TAB-HEADER');
+				if (!isDropIntoHeader) {
+					return;
+				}
 			}
-		}
 
-		throw new Error('DOM structure wrong.');
+			this.$header.moveTab(
+				targetTab,
+				data.tabs.map((tab) => tab.tabId)
+			);
+		} else {
+			const index = targetTab ? this.$header.indexOf(targetTab) : -1;
+
+			if (data.windowId !== WindowId) {
+				closeTabInOtherWindow(
+					data.windowId!,
+					data.tabs.map((tab) => tab.tabId)
+				);
+			}
+
+			data.tabs.forEach((options: any) => {
+				this.addTab(options, index);
+			});
+		}
 	}
 
-	private denyThisDrag(e: DragEvent) {
-		// console.log('ContainerDragEnter: kind=%s', getDndKind(e.dataTransfer));
+	@DOMEvent({ eventName: ['dragenter', 'dragleave', 'dragover'], capture: true })
+	protected filterThisDragDrop(e: DragEvent) {
+		// console.log('denyThisDrag: kind=%s', getDndKind(e.dataTransfer));
 		if (!hasDndData(e.dataTransfer)) {
-			e.stopImmediatePropagation();
-			return true;
+			// console.log('[%s] deny unknown drop', e.type);
+			e.stopPropagation();
+			return false;
 		}
-		if (
-			getDndKind(e.dataTransfer) === DragSourceKind.multi &&
-			checkPanelId(e.dataTransfer, this.getAttribute('id'))
-		) {
-			// console.log('deny drop to self');
-			e.stopImmediatePropagation();
-			return true;
+		if (checkPanelId(e.dataTransfer, this.getAttribute('id'))) {
+			// drop from self to self
+			if (getDndKind(e.dataTransfer) === DragSourceKind.multi) {
+				// console.log('[%s] deny multi drop to self', e.type);
+				e.stopPropagation();
+				return false;
+			}
+			e.dataTransfer!.dropEffect = 'copy';
+		} else {
+			if (checkAllTabsUndetachable(e.dataTransfer)) {
+				// console.log('[%s] deny drop all undetachable tabs', e.type);
+				e.stopPropagation();
+				return false;
+			}
+			e.dataTransfer!.dropEffect = 'move';
 		}
 		e.preventDefault();
-		return false;
+		return true;
 		// console.log('allow drop: %s', e.target);
 	}
 

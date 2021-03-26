@@ -1,9 +1,11 @@
-import { bindThis } from '@idlebox/common';
+import { IDisposable } from '@idlebox/common';
 import { MenuItemConstructorOptions } from 'electron';
-import { DefineCustomElements } from '../common/custom-elements';
-import { DOMInit } from '../common/custom-lifecycle';
+import { DefineCustomElements, initState } from '../common/custom-elements';
+import { disposeOnDetach, DOMInit } from '../common/custom-lifecycle';
+import { handleDragAwayEvent, isElementDragAway } from '../common/dom-drag-away';
 import { handleDragOverEvent } from '../common/dom-drag-over';
 import { DOMEvent } from '../common/dom-event';
+import { DOMEventTrigger } from '../common/dom-event-trigger';
 import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
 import { DragSourceKind, setDndData } from '../common/drag-and-drop';
 import { IPCID, ITabMenuRequest } from '../common/ipc.id';
@@ -34,8 +36,6 @@ export class TabSwitch extends HTMLElement {
 
 	private options: Partial<ITabSwitchOptions> = {};
 	private mouseDownEnabled = false;
-	private draggingMySelf: boolean = false;
-	private dragHoverCount: number = 0;
 
 	constructor() {
 		super();
@@ -58,36 +58,38 @@ export class TabSwitch extends HTMLElement {
 		this.appendChild($vparent);
 	}
 
-	@DOMEvent({})
-	protected dragend() {
-		this.draggingMySelf = false;
-		this.classList.remove('drag');
+	@DOMInit()
+	protected initDragAway() {
+		disposeOnDetach(
+			this,
+			handleDragAwayEvent(
+				this,
+				({ dataTransfer, offsetX: x, offsetY: y }) => {
+					this.mouseup();
+
+					dataTransfer.effectAllowed = 'copyMove';
+					dataTransfer.setDragImage(this, x, y);
+
+					const data = { ...this.getState(), renderFile: '' };
+					setDndData(dataTransfer, { tabs: [data] }, DragSourceKind.single);
+				},
+				(e) => {
+					if (e.dataTransfer.dropEffect === 'move') {
+						this.remove();
+					}
+				}
+			)
+		);
 	}
 
-	@DOMEvent({})
-	protected dragstart(e: DragEvent) {
-		this.mouseup();
-
-		if (!e.dataTransfer) {
-			debugger;
-			return;
-		}
-
-		this.draggingMySelf = true;
-
-		const { dataTransfer, offsetX: x, offsetY: y } = e;
-
-		dataTransfer.effectAllowed = 'move';
-		this.classList.add('drag');
-		dataTransfer.setDragImage(this, x, y);
-		dataTransfer.clearData();
-
-		setDndData(dataTransfer, { tabs: [this.getState()] }, DragSourceKind.single);
+	public remove() {
+		// console.log('tab remove called');
+		this.onTabWillClose(this.tabId);
+		super.remove();
 	}
 
-	getState(): ITabHeaderConfig & { tabId: number; dataset: DOMStringMap } {
+	getState(): ITabHeaderConfig & { tabId: number } {
 		return {
-			dataset: this.dataset,
 			tabId: this.tabId,
 			title: this.title,
 			iconClass: this.iconClass,
@@ -114,9 +116,8 @@ export class TabSwitch extends HTMLElement {
 
 	@DOMEvent({ eventName: 'click', stopPropagation: true, targetProperty: '$closeButton' })
 	protected onCloseButtonClick() {
-		const event = new CustomEvent('close', { detail: this.tabId, bubbles: true });
-		if (this.dispatchEvent(event)) {
-			this.remove();
+		if (this.onTabWillClose(this.tabId)) {
+			super.remove();
 		}
 	}
 
@@ -144,7 +145,7 @@ export class TabSwitch extends HTMLElement {
 	}
 
 	@DOMInit()
-	protected onMounted() {
+	protected onMounted(): IDisposable {
 		// console.log('connectedCallback:%s', this.isConnected);
 
 		if (!this.hasAttribute('tabId')) {
@@ -157,22 +158,27 @@ export class TabSwitch extends HTMLElement {
 		return handleDragOverEvent(this, this.handleDragEnter, this.handleDragLeave);
 	}
 
+	private isValidDropStatus() {
+		if (isElementDragAway(this) || isElementDragAway(this.previousElementSibling)) {
+			return false;
+		}
+		return true;
+	}
+
 	private handleDragEnter() {
-		if (this.draggingMySelf) {
+		if (!this.isValidDropStatus()) {
 			return;
 		}
 		TabDropZone.get().attachElement(this);
 	}
 
+	@DOMEvent({ eventName: 'drop', capture: true })
 	private handleDragLeave() {
-		if (this.draggingMySelf) {
-			return;
-		}
 		TabDropZone.get().detachElement(this);
 	}
 
-	attributeChangedCallback(name: string, _oldValue: string | null, newValue: string | null) {
-		// console.log('[%s] %s(%s) : %s => %s', this.constructor.name, this.tabId, name, _oldValue, newValue);
+	attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+		// console.log('[%s] %s(%s) : %s => %s', this.constructor.name, this.tabId, name, oldValue, newValue);
 		if (name === 'icon-class') {
 			if (newValue) {
 				this.iconUrl = '';
@@ -187,7 +193,7 @@ export class TabSwitch extends HTMLElement {
 		} else if (name === 'icon-url') {
 			if (newValue) {
 				this.$iconImg.src = newValue;
-				this.iconClass = '';
+				if (oldValue !== initState) this.iconClass = '';
 			} else {
 				this.$iconImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 			}
@@ -218,8 +224,7 @@ export class TabSwitch extends HTMLElement {
 			const bVal = DOMGetterSetter.boolean.get(newValue);
 			if (bVal) {
 				// console.log('active', this.tabId);
-				const event = new CustomEvent('switch', { detail: this.tabId, bubbles: true });
-				this.dispatchEvent(event);
+				this.onTabBeSelect(this.tabId);
 			}
 		} else {
 			console.warn('Unknown change key: %s', name);
@@ -234,4 +239,10 @@ export class TabSwitch extends HTMLElement {
 	@GetterSetter(DOMGetterSetter.string) public declare iconUrl: string;
 	@GetterSetter(DOMGetterSetter.string) public declare iconClass: string;
 	@GetterSetter(DOMGetterSetter.string) public declare title: string;
+
+	@DOMEventTrigger({ eventName: 'close', bubbles: true, cancelable: true })
+	private declare onTabWillClose: DOMEventTrigger<number>;
+
+	@DOMEventTrigger({ eventName: 'switch', bubbles: true })
+	private declare onTabBeSelect: DOMEventTrigger<number>;
 }

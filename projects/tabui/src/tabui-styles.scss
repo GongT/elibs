@@ -61,12 +61,13 @@ tab-container {
 		user-select: none;
 		display: flex;
 		flex-direction: row;
-		overflow: hidden;
+		overflow: visible;
 
 		background-color: var(--background);
 		color: var(--foreground);
 
 		> .tabs {
+			display: flex;
 			white-space: nowrap;
 			overflow: hidden;
 			position: relative;
@@ -104,8 +105,11 @@ tab-container {
 					display: flex;
 					overflow: visible;
 					white-space: nowrap;
+
 					> .icon {
-						@include iconBase($fontSizeIcon);
+						display: inline;
+						font-size: $fontSizeIcon;
+						@include iconBase();
 					}
 
 					> .close {
@@ -133,6 +137,13 @@ tab-container {
 			flex-direction: row;
 			justify-content: flex-end;
 			flex-grow: 1;
+
+			&.drop {
+				> .spacer,
+				> .vparent {
+					background-color: var(--drop-block);
+				}
+			}
 
 			> .vparent {
 				display: flex;

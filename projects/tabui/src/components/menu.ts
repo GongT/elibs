@@ -1,3 +1,4 @@
+import { IDisposable } from '@idlebox/common';
 import { DefineCustomElements } from '../common/custom-elements';
 import { DOMInit } from '../common/custom-lifecycle';
 import { handleDragOverEvent } from '../common/dom-drag-over';
@@ -46,7 +47,7 @@ export class TabMenu extends HTMLElement {
 	}
 
 	@DOMInit()
-	protected onMounted() {
+	protected onMounted(): IDisposable {
 		return handleDragOverEvent(this, this.handleDragEnter, this.handleDragLeave);
 	}
 
@@ -54,6 +55,7 @@ export class TabMenu extends HTMLElement {
 		TabDropZone.get().attachElement(this);
 	}
 
+	@DOMEvent({ eventName: 'drop', capture: true })
 	private handleDragLeave() {
 		TabDropZone.get().detachElement(this);
 	}

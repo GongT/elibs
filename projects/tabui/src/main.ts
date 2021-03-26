@@ -1,15 +1,16 @@
 import { BrowserWindow, ipcMain, IpcMainInvokeEvent } from 'electron';
-import { DND_TYPE_ID_BASE, IPanelMenuRequest, IPCID, ITabMenuRequest } from './common/ipc.id';
+import { IPanelMenuRequest, IPCID, ITabMenuRequest } from './common/ipc.id';
 
 const randomId = 'electron-app-tabui-id-' + (Math.random() * 100000).toFixed(0);
 let guid = 1;
-const DND_TYPE_ID = DND_TYPE_ID_BASE + ':' + randomId;
 
 export function initTabUIMainProcess() {
 	if (BrowserWindow.getAllWindows().length > 0) {
 		throw new Error('must call initTabUIMainProcess() before create first window.');
 	}
-	mainHandle(IPCID.GetApplicationId, () => randomId);
+	mainHandle(IPCID.GetApplicationId, (e) => {
+		return { applicationId: randomId, windowId: e.sender.id };
+	});
 	mainHandle(IPCID.GetNextTabGuid, () => guid++);
 	mainHandle(IPCID.PanelMenu, handlePanelMenu);
 	mainHandle(IPCID.TabMenu, handleTabMenu);

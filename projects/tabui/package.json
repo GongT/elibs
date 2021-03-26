@@ -28,7 +28,7 @@
 		"start": "electron --no-sandbox tests/main.cjs"
 	},
 	"dependencies": {
-		"@idlebox/common": "^1.1.5",
+		"@idlebox/common": "^1.1.6",
 		"reflect-metadata": "^0.1.13",
 		"sass": "^1.32.8",
 		"tslib": "^2.1.0"

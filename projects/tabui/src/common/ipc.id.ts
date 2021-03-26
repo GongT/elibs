@@ -7,6 +7,7 @@ export enum IPCID {
 	GetNextTabGuid = 'get.tab.guid',
 	PanelMenu = 'show.panel.menu',
 	TabMenu = 'show.tab.menu',
+	DestroyTabs = 'dispose.tab',
 }
 
 export interface IPanelMenuRequest {

@@ -24,8 +24,9 @@ export function registerLifecycle(targetPrototype: HTMLElement, callback: () => 
 }
 
 /** @internal */
-export function __callLifecycleCallbacks(target: HTMLElement): void;
-export function __callLifecycleCallbacks(target: any) {
+export function callLifecycleCallbacks(target: HTMLElement): void;
+/** @internal */
+export function callLifecycleCallbacks(target: any) {
 	const eventCallbacks = Reflect.getMetadata(
 		customElementInitCallbacksAtPrototype,
 		Object.getPrototypeOf(target)

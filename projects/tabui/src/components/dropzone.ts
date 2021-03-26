@@ -12,23 +12,22 @@ export class TabDropZone extends HTMLElement {
 		if (weakRef) {
 			const exists = weakRef.deref();
 			if (exists) {
-				document.body.append(exists);
 				return exists;
 			}
 		}
 
 		const ele = new TabDropZone();
 		ele.id = 'tabui-drop-zone';
-		document.body.append(ele);
 		weakRef = new WeakRef(ele);
 		return ele;
 	}
 
 	detachElement(anotherElement: HTMLElement) {
-		if (this.currentTarget === anotherElement) this.remove();
+		if (this.isConnected && this.currentTarget === anotherElement) this.remove();
 	}
 
 	attachElement(anotherElement: HTMLElement) {
+		// console.log('attachElement %O', anotherElement);
 		this.currentTarget = anotherElement;
 		for (let itr = anotherElement.parentElement; itr; itr = itr!.parentElement) {
 			if (itr.tagName === 'TAB-CONTAINER') {
@@ -61,5 +60,6 @@ export class TabDropZone extends HTMLElement {
 			this.classList.add('left');
 			this.classList.remove('top');
 		}
+		if (!this.isConnected) document.body.append(this);
 	}
 }

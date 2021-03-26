@@ -1,11 +1,12 @@
 import { ApplicationId, DND_TYPE_ID } from './ipc.renderer';
 
-import type { ITabConfig } from './type';
+import type { ITabConfigExchange } from './type';
 
 export interface IDndData {
 	applicationId?: string;
 	panelId?: string;
-	tabs: ReadonlyArray<Readonly<Partial<ITabConfig> & { tabId: number }>>;
+	windowId?: number;
+	tabs: ReadonlyArray<Readonly<ITabConfigExchange>>;
 }
 
 export enum DragSourceKind {
@@ -19,14 +20,19 @@ export function setDndData(dataTransfer: null | DataTransfer, data: IDndData, ki
 	dataTransfer!.setData(DND_TYPE_ID + ':' + DragSourceKind[kind], 'yes');
 }
 
-export function attachMoreDndData(dataTransfer: null | DataTransfer, moreData: Partial<IDndData>) {
+export function attachMoreDndData(
+	dataTransfer: null | DataTransfer,
+	moreData: Partial<IDndData>
+): undefined | IDndData {
 	const input = parseDndData(dataTransfer);
 	if (!input) return;
 	const kind = getDndKind(dataTransfer);
 	if (!kind) {
 		throw new Error('no kind param');
 	}
-	setDndData(dataTransfer, Object.assign(input, moreData), kind);
+	const result = Object.assign(input, moreData);
+	setDndData(dataTransfer, result, kind);
+	return result;
 }
 
 export function hasDndData(dataTransfer: null | DataTransfer): boolean {
@@ -60,4 +66,12 @@ export function markPanelId(dataTransfer: null | DataTransfer, id: string | null
 export function checkPanelId(dataTransfer: null | DataTransfer, id: string | null) {
 	if (!id) return false;
 	return dataTransfer!.types.includes(DND_TYPE_ID + ':tabui-panel-id:' + id);
+}
+
+export function markAllTabsUndetachable(dataTransfer: null | DataTransfer) {
+	dataTransfer!.setData(DND_TYPE_ID + ':tabui-all-un-detach', 'yes');
+}
+
+export function checkAllTabsUndetachable(dataTransfer: null | DataTransfer): boolean {
+	return dataTransfer!.types.includes(DND_TYPE_ID + ':tabui-all-un-detach');
 }

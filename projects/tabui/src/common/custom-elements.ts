@@ -1,10 +1,11 @@
 import { linux_case_hyphen } from '@idlebox/common';
-import { __callLifecycleCallbacks, disposeLifecycle, registerLifecycle } from './custom-lifecycle';
+import { callLifecycleCallbacks, disposeLifecycle, registerLifecycle } from './custom-lifecycle';
 import { defauleValueMetaKey, DOMSetAttribute, getterSetterMetaKey } from './dom-getset';
 import { definePublicConstant } from './helper';
 
 const firstMountSymbol = Symbol('custom-element-first-connect');
 const initStateSymbol = Symbol.for('@tabui/init');
+export const initState: any = initStateSymbol;
 
 export function isFirstMount(ele: HTMLElement) {
 	return (ele as any)[firstMountSymbol] === undefined;
@@ -78,7 +79,7 @@ export function DefineCustomElements(options?: ElementDefinitionOptions) {
 				return;
 			}
 
-			__callLifecycleCallbacks(this);
+			callLifecycleCallbacks(this);
 
 			anyThis[firstMountSymbol] = false;
 		});

@@ -1,53 +1,93 @@
+import { Emitter, IDisposable } from '@idlebox/common';
 import { DefineCustomElements } from '../common/custom-elements';
 import { DOMEventTrigger } from '../common/dom-event-trigger';
 import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
+import { definePublicConstant } from '../common/helper';
+import { ICommunicateObject, IIcon, ISize, ITabBodyConfig } from '../common/type';
 
 export interface IRenderEventData {
 	root: ShadowRoot;
 }
 
+class CommunicateObject implements ICommunicateObject {
+	public readonly _onBeforeDispose = new Emitter<void>();
+	public readonly onBeforeDispose = this._onBeforeDispose.register;
+	public readonly rootElement: HTMLDivElement;
+	public readonly shadowRoot: ShadowRoot;
+	public declare readonly tabId: number;
+
+	constructor(private readonly tab: TabView) {
+		this.shadowRoot = tab.attachShadow({ mode: 'closed' });
+		this.rootElement = document.createElement('div');
+		this.shadowRoot.append(this.rootElement);
+	}
+
+	dispose() {
+		this._onBeforeDispose.fire();
+		this._onBeforeDispose.dispose();
+		this.rootElement.innerHTML = '';
+		this.shadowRoot.append(this.rootElement);
+	}
+	setTitle(title: string): void {
+		this.tab.changeTitleEvent(title);
+	}
+	setIcon(icon: IIcon): void {
+		this.tab.changeIconEvent(icon);
+	}
+	setSize(size: ISize): void {
+		this.tab.changeSizeEvent(size);
+	}
+	public get dataset(): Record<string, string> {
+		return this.tab.dataset as any;
+	}
+}
+
 @DefineCustomElements()
 export class TabView extends HTMLElement {
-	private _shadowRoot?: ShadowRoot;
-	private renderState = false;
+	private renderState?: IDisposable;
+	private readonly communicateObject: CommunicateObject;
 
 	constructor() {
 		super();
+		this.communicateObject = new CommunicateObject(this);
 	}
 
 	private _render() {
-		this._removeRender();
+		if (this.renderState) return;
+		if (!this.renderFile) throw new Error('no renderFile on view body');
+		if (!this.tabId) throw new Error('no tabId on view body');
 
-		if (!this._shadowRoot) this._shadowRoot = this.attachShadow({ mode: 'closed' });
+		definePublicConstant(this.communicateObject, 'tabId', this.tabId);
 
-		this._shadowRoot.innerHTML = '';
-		const notCaptured = this.renderEvent({ root: this._shadowRoot });
-
-		if (notCaptured) {
-			console.warn('tab view not rendered', this);
-			if (this._shadowRoot.innerHTML) {
-				throw new Error('render has done, but event.preventDefault() is not called.');
-			}
-			this._removeRender();
+		const styleFile = this.styleFile;
+		if (styleFile) {
+			const link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.href = styleFile;
+			this.communicateObject.shadowRoot.append(link);
 		}
-		this.renderState = !notCaptured;
+
+		const module = require(this.renderFile);
+		if (module?.render) {
+			this.renderState = module.render(this.communicateObject);
+		} else if (module?.default?.render) {
+			this.renderState = module.default.render(this.communicateObject);
+		} else {
+			throw new Error('invalid render module: ' + this.renderFile);
+		}
+		if (!this.renderState?.dispose) {
+			throw new Error('render function does not return disposable');
+		}
 	}
 
 	disconnectedCallback() {
-		this._removeRender();
-	}
-
-	removeRender() {
-		this._removeRender();
-		this.removeAttribute('open');
-	}
-
-	private _removeRender() {
 		if (this.renderState) {
-			this.disposeEvent();
-			if (this._shadowRoot!.innerHTML) {
-				console.warn('not cleanup after dispose');
-			}
+			this.removeAttribute('open');
+			this.renderState.dispose();
+			delete this.renderState;
+
+			this.communicateObject._onBeforeDispose.fire();
+			this.communicateObject.dispose();
 		}
 	}
 
@@ -55,17 +95,43 @@ export class TabView extends HTMLElement {
 		// console.log('[%s] %s : %s => %s', this.constructor.name, name, _oldValue, newValue);
 		if (name === 'open') {
 			const bValue = DOMGetterSetter.boolean.get(newValue);
-			if (bValue) {
-				if (!this._shadowRoot) this._render();
+			if (bValue && !this.renderState) {
+				this._render();
 			}
+		} else if (name === 'render-file' || name === 'style-file' || name === 'tab-id') {
+			if (this.renderState) throw new Error(`can not replace "${name}" after render already complete.`);
 		} else {
 			console.warn('Unknown change key: %s', name);
 		}
 	}
 
+	getState(): ITabBodyConfig {
+		return {
+			renderFile: this.renderFile,
+			styleFile: this.styleFile || undefined,
+			dataset: this.dataset as any,
+		};
+	}
+
 	@GetterSetter(DOMGetterSetter.boolean(false)) public declare open: boolean;
-	@DOMEventTrigger({ eventName: 'render', bubbles: true, cancelable: true })
-	private declare renderEvent: DOMEventTrigger<IRenderEventData>;
-	@DOMEventTrigger({ eventName: 'dispose', bubbles: true, cancelable: true })
-	private declare disposeEvent: DOMEventTrigger<void>;
+
+	@GetterSetter(DOMGetterSetter.interger) public declare tabId: number;
+
+	@GetterSetter(DOMGetterSetter.string) public declare renderFile: string;
+	@GetterSetter(DOMGetterSetter.string) public declare styleFile: string;
+
+	@DOMEventTrigger({ eventName: 'render', bubbles: true })
+	public declare renderEvent: DOMEventTrigger<ICommunicateObject>;
+
+	/** @internal */
+	@DOMEventTrigger({ eventName: 'changeTitle', bubbles: true })
+	public declare changeTitleEvent: DOMEventTrigger<string>;
+
+	/** @internal */
+	@DOMEventTrigger({ eventName: 'changeIcon', bubbles: true })
+	public declare changeIconEvent: DOMEventTrigger<IIcon>;
+
+	/** @internal */
+	@DOMEventTrigger({ eventName: 'changeSize', bubbles: true })
+	public declare changeSizeEvent: DOMEventTrigger<ISize>;
 }

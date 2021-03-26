@@ -1,3 +1,4 @@
+import { camelCase } from '@idlebox/common';
 import { DefineCustomElements } from '../common/custom-elements';
 import { DOMEvent } from '../common/dom-event';
 import { DOMGetterSetter, getCustomProperties, GetterSetter } from '../common/dom-getset';
@@ -5,7 +6,7 @@ import { DragSourceKind, setDndData } from '../common/drag-and-drop';
 import { __defineTabId, __getTabId } from '../common/helper';
 import { IPCID } from '../common/ipc.id';
 import { rendererInvoke } from '../common/ipc.renderer';
-import { ITabConfig, serializeRenderFunction } from '../common/type';
+import { ITabConfig, ITabConfigExchange } from '../common/type';
 import { TabMenu } from './menu';
 import { TabSwitch } from './switch';
 
@@ -17,7 +18,7 @@ export class TabHeader extends HTMLElement {
 	private readonly spaceResizeObserver = new ResizeObserver(this.resizeHandler.bind(this));
 
 	private childs: TabSwitch[] = [];
-	private $last?: Element;
+	private $last?: TabSwitch;
 	private lastSelectIndex: number = 0;
 
 	constructor() {
@@ -37,35 +38,42 @@ export class TabHeader extends HTMLElement {
 			debugger;
 			return;
 		}
-		dataTransfer.effectAllowed = 'move';
+
+		const tabs = this.childs
+			.filter((e) => e.movable && e.detachable)
+			.map((e) => {
+				return Object.assign(e.getState(), { renderFile: '' });
+			});
+
 		if (this.vertical) {
 			y += (target as HTMLElement).offsetTop;
 		} else {
 			x += (target as HTMLElement).offsetLeft;
 		}
 
-		this.classList.add('drag');
-
-		// TODO: custom styles
 		dataTransfer.setDragImage(this, x, y);
-		setTimeout(() => {
-			this.classList.remove('drag');
-		}, 50);
-
+		dataTransfer.effectAllowed = 'move';
 		dataTransfer.clearData();
-
 		setDndData(
 			dataTransfer,
 			{
-				tabs: this.childs.filter((e) => e.movable && e.detachable).map((e) => e.getState()),
+				tabs: tabs,
 			},
 			DragSourceKind.multi
 		);
+
+		this.classList.add('drag');
 	}
 
 	@DOMEvent({ eventName: 'switch' })
 	protected onTabSwitch({ detail }: CustomEvent) {
 		this.select = detail!;
+	}
+
+	@DOMEvent({ eventName: 'close' })
+	protected onTabClose({ detail: tabId }: CustomEvent) {
+		if (this.select === tabId) {
+		}
 	}
 
 	private declare lastOverflow: boolean;
@@ -146,14 +154,17 @@ export class TabHeader extends HTMLElement {
 
 		if (this.$last) {
 			// console.log('    remove last active', this.$last);
-			this.$last.removeAttribute('active');
+			this.$last.active = false;
 		}
 		this.$last = $next;
 		this.lastSelectIndex = nextIndex;
 
 		if ($next) {
-			// console.log('    add next active', $next);
-			$next.setAttribute('active', '');
+			// console.log('    add next active [prev active=%s] [index=%s] %o ', $next.active, nextIndex, $next);
+			$next.active = true;
+		} else {
+			// console.log('    no next active');
+			this.select = 0;
 		}
 	}
 
@@ -169,8 +180,14 @@ export class TabHeader extends HTMLElement {
 
 		this.$menu.draggable = this.childs.filter((e) => e.detachable && e.movable).length !== 0;
 
+		if (!this.select && childs.length === 1) {
+			setTimeout(() => {
+				this.childs[0].active = true;
+			}, 0);
+		}
+
 		this._update();
-		// console.log('updateChildStatus:%s', childs.length);
+		// console.log('updateChildStatus [childs: %s] [select: %s]', childs.length, this.select);
 	}
 
 	disconnectedCallback() {
@@ -184,20 +201,53 @@ export class TabHeader extends HTMLElement {
 		this.spaceResizeObserver.observe(this.$scroller);
 	}
 
-	async addTab(options: ITabConfig, position: number = -1) {
+	moveTab(position: TabSwitch | null, ids: number[]) {
+		const tabs: TabSwitch[] = [];
+		for (const id of ids) {
+			const tab = this.childs.find((tab) => tab.tabId === id);
+			if (!tab) {
+				console.warn('move not exists tab: %s', id);
+				continue;
+			}
+
+			if (position === tab) position = null;
+
+			tabs.push(tab);
+		}
+
+		for (const tab of tabs) {
+			this.$scroller.insertBefore(tab, position);
+		}
+	}
+
+	findTab(from: HTMLElement): TabSwitch | undefined | null {
+		for (let itr = from; itr.parentElement; itr = itr.parentElement) {
+			if (itr.tagName === 'TAB-BODY' || itr.tagName === 'TAB-MENU') {
+				return null;
+			} else if (itr.tagName === 'TAB-SWITCH') {
+				return itr as TabSwitch;
+			}
+		}
+		return undefined;
+	}
+
+	indexOf(tab: TabSwitch): number {
+		return this.childs.indexOf(tab);
+	}
+
+	async addTab(options: ITabConfig & Partial<ITabConfigExchange>, position: number = -1) {
 		const newTab = new TabSwitch();
 
-		const tabId = await rendererInvoke(IPCID.GetNextTabGuid);
+		const tabId = options.tabId || (await rendererInvoke(IPCID.GetNextTabGuid));
 		__defineTabId(newTab, tabId);
 
 		for (const key of getCustomProperties(newTab)) {
-			if (options.hasOwnProperty(key)) {
+			const cKey = camelCase(key);
+			if (options.hasOwnProperty(cKey)) {
 				// console.log('addTab:%s = %s', key, (options as any)[key]);
-				newTab.setAttribute(key, (options as any)[key]);
+				newTab.setAttribute(key, (options as any)[cKey]);
 			}
 		}
-
-		newTab.dataset._tab_render = serializeRenderFunction(options.render);
 
 		if (this.childs[position]) {
 			this.$scroller.insertBefore(newTab, this.childs[position]);
@@ -213,10 +263,6 @@ export class TabHeader extends HTMLElement {
 		} else {
 			this.$scroller.scrollTo(pos, 0);
 		}
-	}
-
-	indexOf(itr: HTMLElement) {
-		return this.childs.indexOf(itr as TabSwitch);
 	}
 
 	attributeChangedCallback(name: string, _oldValue: string | null, _newValue: string | null) {

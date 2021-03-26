@@ -1,11 +1,11 @@
-import { addDisposableEventListener } from '@idlebox/common';
+import { addDisposableEventListener, Disposable } from '@idlebox/common';
 import { registerLifecycle } from './custom-lifecycle';
 
 interface IEventRegisterOptions {
 	capture: boolean;
 	once: boolean;
 	passive: boolean;
-	eventName: string;
+	eventName: string | string[];
 	stopPropagation: boolean;
 	preventDefault: boolean;
 	targetProperty: string;
@@ -46,7 +46,7 @@ export function DOMEvent({
 				target = this;
 			}
 
-			return addDisposableEventListener(target, eventName!, { capture, once, passive }, (e: Event) => {
+			const handler = (e: Event) => {
 				if (stopPropagation) {
 					e.stopImmediatePropagation();
 					e.preventDefault();
@@ -55,7 +55,18 @@ export function DOMEvent({
 				}
 
 				return (this as any)[propertyKey].call(this, e);
-			});
+			};
+			const options = { capture, once, passive };
+
+			if (Array.isArray(eventName)) {
+				const dis = new Disposable();
+				for (const ev of eventName) {
+					dis._register(addDisposableEventListener(target, ev, options, handler));
+				}
+				return dis;
+			} else {
+				return addDisposableEventListener(target, eventName!, options, handler);
+			}
 		});
 	};
 }

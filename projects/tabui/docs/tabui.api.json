@@ -17,6 +17,167 @@
       "members": [
         {
           "kind": "Variable",
+          "canonicalReference": "@gongt/tabui!ApplicationId:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "ApplicationId: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationId",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!attachMoreDndData:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function attachMoreDndData(dataTransfer: "
+            },
+            {
+              "kind": "Content",
+              "text": "null | "
+            },
+            {
+              "kind": "Reference",
+              "text": "DataTransfer",
+              "canonicalReference": "!DataTransfer:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", moreData: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Partial",
+              "canonicalReference": "!Partial:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "IDndData",
+              "canonicalReference": "@gongt/tabui!IDndData:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 9,
+            "endIndex": 10
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "dataTransfer",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "parameterName": "moreData",
+              "parameterTypeTokenRange": {
+                "startIndex": 4,
+                "endIndex": 8
+              }
+            }
+          ],
+          "name": "attachMoreDndData"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!checkPanelId:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function checkPanelId(dataTransfer: "
+            },
+            {
+              "kind": "Content",
+              "text": "null | "
+            },
+            {
+              "kind": "Reference",
+              "text": "DataTransfer",
+              "canonicalReference": "!DataTransfer:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", id: "
+            },
+            {
+              "kind": "Content",
+              "text": "string | null"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 7
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "dataTransfer",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "parameterName": "id",
+              "parameterTypeTokenRange": {
+                "startIndex": 4,
+                "endIndex": 5
+              }
+            }
+          ],
+          "name": "checkPanelId"
+        },
+        {
+          "kind": "Variable",
           "canonicalReference": "@gongt/tabui!defauleValueMetaKey:var",
           "docComment": "",
           "excerptTokens": [
@@ -52,25 +213,16 @@
             },
             {
               "kind": "Content",
-              "text": "<T extends {\n    new (): "
+              "text": "(elementConstructor: typeof "
             },
             {
               "kind": "Reference",
               "text": "HTMLElement",
-              "canonicalReference": "!HTMLElement:interface"
+              "canonicalReference": "!HTMLElement:var"
             },
             {
               "kind": "Content",
-              "text": ";\n    prototype: "
-            },
-            {
-              "kind": "Reference",
-              "text": "HTMLElement",
-              "canonicalReference": "!HTMLElement:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n}>(elementConstructor: T) => void"
+              "text": ") => void"
             },
             {
               "kind": "Content",
@@ -79,7 +231,7 @@
           ],
           "returnTypeTokenRange": {
             "startIndex": 3,
-            "endIndex": 8
+            "endIndex": 6
           },
           "releaseTag": "Public",
           "overloadIndex": 1,
@@ -96,12 +248,154 @@
         },
         {
           "kind": "Function",
+          "canonicalReference": "@gongt/tabui!disposeLifecycle:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function disposeLifecycle(target: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "target",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "disposeLifecycle"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!disposeOnDetach:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function disposeOnDetach(target: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", d: "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDisposable",
+              "canonicalReference": "@idlebox/common!IDisposable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "target",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "d",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "name": "disposeOnDetach"
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@gongt/tabui!DND_TYPE_ID_BASE:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "DND_TYPE_ID_BASE = \"tabui-drag-tab\""
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DND_TYPE_ID_BASE",
+          "variableTypeTokenRange": {
+            "startIndex": 0,
+            "endIndex": 0
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@gongt/tabui!DND_TYPE_ID:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "DND_TYPE_ID: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DND_TYPE_ID",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Function",
           "canonicalReference": "@gongt/tabui!DOMEvent:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare function DOMEvent({ eventName, preventDefault, stopPropagation, targetProperty, targetSelector, target: $target, }?: "
+              "text": "export declare function DOMEvent({ eventName, preventDefault, stopPropagation, capture, once, passive, targetProperty, targetSelector, target: $target, }?: "
             },
             {
               "kind": "Reference",
@@ -151,7 +445,7 @@
           "overloadIndex": 1,
           "parameters": [
             {
-              "parameterName": "{ eventName, preventDefault, stopPropagation, targetProperty, targetSelector, target: $target, }",
+              "parameterName": "{ eventName, preventDefault, stopPropagation, capture, once, passive, targetProperty, targetSelector, target: $target, }",
               "parameterTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 5
@@ -161,25 +455,141 @@
           "name": "DOMEvent"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@gongt/tabui!domEventInitMetaKey:var",
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!DOMEventTrigger:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "domEventInitMetaKey: "
+              "text": "export declare function DOMEventTrigger<T>(eventInit?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ICustomEventInit",
+              "canonicalReference": "@gongt/tabui!ICustomEventInit:interface"
             },
             {
               "kind": "Content",
-              "text": "unique symbol"
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "(self: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", propKey: string) => void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "eventInit",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "DOMEventTrigger"
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@gongt/tabui!DOMEventTrigger:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DOMEventTrigger<T> "
             }
           ],
           "releaseTag": "Public",
-          "name": "domEventInitMetaKey",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "DOMEventTrigger",
+          "members": [
+            {
+              "kind": "CallSignature",
+              "canonicalReference": "@gongt/tabui!DOMEventTrigger:call(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "(e: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "T"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "e",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ]
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Namespace",
@@ -459,6 +869,58 @@
         },
         {
           "kind": "Function",
+          "canonicalReference": "@gongt/tabui!DOMInit:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function DOMInit(singleTime?: "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "(target: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", propKey: string) => void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "singleTime",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "DOMInit"
+        },
+        {
+          "kind": "Function",
           "canonicalReference": "@gongt/tabui!DOMSetAttribute:function(1)",
           "docComment": "",
           "excerptTokens": [
@@ -533,6 +995,137 @@
         },
         {
           "kind": "Function",
+          "canonicalReference": "@gongt/tabui!DOMSetBooleanAttribute:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function DOMSetBooleanAttribute(dom: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", qualifiedName: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", value: "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 7,
+            "endIndex": 8
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "dom",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "qualifiedName",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            },
+            {
+              "parameterName": "value",
+              "parameterTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              }
+            }
+          ],
+          "name": "DOMSetBooleanAttribute"
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "@gongt/tabui!DragSourceKind:enum",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare enum DragSourceKind "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DragSourceKind",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@gongt/tabui!DragSourceKind.multi:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "multi = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"multi\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "multi",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@gongt/tabui!DragSourceKind.single:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "single = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"single\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "single",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Function",
           "canonicalReference": "@gongt/tabui!getCustomProperties:function(1)",
           "docComment": "",
           "excerptTokens": [
@@ -586,6 +1179,103 @@
             }
           ],
           "name": "getCustomProperties"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!getDndKind:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getDndKind(dataTransfer: "
+            },
+            {
+              "kind": "Content",
+              "text": "null | "
+            },
+            {
+              "kind": "Reference",
+              "text": "DataTransfer",
+              "canonicalReference": "!DataTransfer:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "DragSourceKind",
+              "canonicalReference": "@gongt/tabui!DragSourceKind:enum"
+            },
+            {
+              "kind": "Content",
+              "text": " | undefined"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 4,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "dataTransfer",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "name": "getDndKind"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!getParentContainerId:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getParentContainerId(self: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "self",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "getParentContainerId"
         },
         {
           "kind": "Function",
@@ -684,6 +1374,537 @@
             "startIndex": 0,
             "endIndex": 0
           }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!handleDragOverEvent:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function handleDragOverEvent(element: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", enter: "
+            },
+            {
+              "kind": "Content",
+              "text": "(ev: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DragEvent",
+              "canonicalReference": "!DragEvent:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => void"
+            },
+            {
+              "kind": "Content",
+              "text": ", leave: "
+            },
+            {
+              "kind": "Content",
+              "text": "(ev: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DragEvent",
+              "canonicalReference": "!DragEvent:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => void"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDisposable",
+              "canonicalReference": "@idlebox/common!IDisposable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 11,
+            "endIndex": 12
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "element",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "enter",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 6
+              }
+            },
+            {
+              "parameterName": "leave",
+              "parameterTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 10
+              }
+            }
+          ],
+          "name": "handleDragOverEvent"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!hasDndData:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function hasDndData(dataTransfer: "
+            },
+            {
+              "kind": "Content",
+              "text": "null | "
+            },
+            {
+              "kind": "Reference",
+              "text": "DataTransfer",
+              "canonicalReference": "!DataTransfer:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 4,
+            "endIndex": 5
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "dataTransfer",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "name": "hasDndData"
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@gongt/tabui!ICustomEventInit:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ICustomEventInit extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "EventInit",
+              "canonicalReference": "!EventInit:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ICustomEventInit",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/tabui!ICustomEventInit#eventName:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "eventName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "eventName",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/tabui!ICustomEventInit#target:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "target?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Window",
+                  "canonicalReference": "!Window:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "HTMLElement",
+                  "canonicalReference": "!HTMLElement:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "target",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/tabui!ICustomEventInit#targetProperty:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "targetProperty?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "targetProperty",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/tabui!ICustomEventInit#targetSelector:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "targetSelector?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "targetSelector",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@gongt/tabui!IDndData:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IDndData "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IDndData",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/tabui!IDndData#applicationId:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "applicationId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "applicationId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/tabui!IDndData#panelId:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "panelId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "panelId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/tabui!IDndData#tabs:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "tabs: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ReadonlyArray",
+                  "canonicalReference": "!ReadonlyArray:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Readonly",
+                  "canonicalReference": "!Readonly:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Partial",
+                  "canonicalReference": "!Partial:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ITabConfig",
+                  "canonicalReference": "@gongt/tabui!ITabConfig:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "> & {\n        tabId: number;\n    }>>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "tabs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 9
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@gongt/tabui!IMainRenderFunction:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IMainRenderFunction "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IMainRenderFunction",
+          "members": [
+            {
+              "kind": "CallSignature",
+              "canonicalReference": "@gongt/tabui!IMainRenderFunction:call(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "(tabId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", dom: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ShadowRoot",
+                  "canonicalReference": "!ShadowRoot:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ITabHeaderConfig",
+                  "canonicalReference": "@gongt/tabui!ITabHeaderConfig:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", dataset: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Readonly",
+                  "canonicalReference": "!Readonly:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DOMStringMap",
+                  "canonicalReference": "!DOMStringMap:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IDisposable",
+                  "canonicalReference": "@idlebox/common!IDisposable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 12,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "tabId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "dom",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "dataset",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 11
+                  }
+                }
+              ]
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Interface",
@@ -880,12 +2101,108 @@
         },
         {
           "kind": "Interface",
+          "canonicalReference": "@gongt/tabui!IRenderEventData:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IRenderEventData "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IRenderEventData",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/tabui!IRenderEventData#root:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "root: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ShadowRoot",
+                  "canonicalReference": "!ShadowRoot:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "root",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!isFirstMount:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function isFirstMount(ele: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "ele",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "isFirstMount"
+        },
+        {
+          "kind": "Interface",
           "canonicalReference": "@gongt/tabui!ITabConfig:interface",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export interface ITabConfig "
+              "text": "export interface ITabConfig extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "ITabHeaderConfig",
+              "canonicalReference": "@gongt/tabui!ITabHeaderConfig:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
             }
           ],
           "releaseTag": "Public",
@@ -893,12 +2210,64 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@gongt/tabui!ITabConfig#closable:member",
+              "canonicalReference": "@gongt/tabui!ITabConfig#render:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "closable: "
+                  "text": "render: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IMainRenderFunction",
+                  "canonicalReference": "@gongt/tabui!IMainRenderFunction:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "render",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@gongt/tabui!ITabHeaderConfig:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ITabHeaderConfig "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ITabHeaderConfig",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/tabui!ITabHeaderConfig#closable:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "closable?: "
                 },
                 {
                   "kind": "Content",
@@ -909,7 +2278,7 @@
                   "text": ";"
                 }
               ],
-              "isOptional": false,
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "closable",
               "propertyTypeTokenRange": {
@@ -919,12 +2288,12 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@gongt/tabui!ITabConfig#detachable:member",
+              "canonicalReference": "@gongt/tabui!ITabHeaderConfig#detachable:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "detachable: "
+                  "text": "detachable?: "
                 },
                 {
                   "kind": "Content",
@@ -935,7 +2304,7 @@
                   "text": ";"
                 }
               ],
-              "isOptional": false,
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "detachable",
               "propertyTypeTokenRange": {
@@ -945,7 +2314,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@gongt/tabui!ITabConfig#iconClass:member",
+              "canonicalReference": "@gongt/tabui!ITabHeaderConfig#iconClass:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -971,7 +2340,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@gongt/tabui!ITabConfig#iconUrl:member",
+              "canonicalReference": "@gongt/tabui!ITabHeaderConfig#iconUrl:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -997,12 +2366,12 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@gongt/tabui!ITabConfig#movable:member",
+              "canonicalReference": "@gongt/tabui!ITabHeaderConfig#movable:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "movable: "
+                  "text": "movable?: "
                 },
                 {
                   "kind": "Content",
@@ -1013,7 +2382,7 @@
                   "text": ";"
                 }
               ],
-              "isOptional": false,
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "movable",
               "propertyTypeTokenRange": {
@@ -1023,12 +2392,12 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@gongt/tabui!ITabConfig#title:member",
+              "canonicalReference": "@gongt/tabui!ITabHeaderConfig#title:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "title: "
+                  "text": "title?: "
                 },
                 {
                   "kind": "Content",
@@ -1039,7 +2408,7 @@
                   "text": ";"
                 }
               ],
-              "isOptional": false,
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "title",
               "propertyTypeTokenRange": {
@@ -1204,6 +2573,190 @@
         },
         {
           "kind": "Function",
+          "canonicalReference": "@gongt/tabui!markPanelId:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function markPanelId(dataTransfer: "
+            },
+            {
+              "kind": "Content",
+              "text": "null | "
+            },
+            {
+              "kind": "Reference",
+              "text": "DataTransfer",
+              "canonicalReference": "!DataTransfer:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", id: "
+            },
+            {
+              "kind": "Content",
+              "text": "string | null"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 7
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "dataTransfer",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "parameterName": "id",
+              "parameterTypeTokenRange": {
+                "startIndex": 4,
+                "endIndex": 5
+              }
+            }
+          ],
+          "name": "markPanelId"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!parseDndData:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function parseDndData(dataTransfer: "
+            },
+            {
+              "kind": "Content",
+              "text": "null | "
+            },
+            {
+              "kind": "Reference",
+              "text": "DataTransfer",
+              "canonicalReference": "!DataTransfer:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDndData",
+              "canonicalReference": "@gongt/tabui!IDndData:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | undefined"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 4,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "dataTransfer",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "name": "parseDndData"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!registerLifecycle:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function registerLifecycle(targetPrototype: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", callback: "
+            },
+            {
+              "kind": "Content",
+              "text": "() => "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDisposable",
+              "canonicalReference": "@idlebox/common!IDisposable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | void"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 7,
+            "endIndex": 8
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "targetPrototype",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "callback",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 6
+              }
+            }
+          ],
+          "name": "registerLifecycle"
+        },
+        {
+          "kind": "Function",
           "canonicalReference": "@gongt/tabui!rendererInvoke:function(1)",
           "docComment": "",
           "excerptTokens": [
@@ -1267,6 +2820,134 @@
           "name": "rendererInvoke"
         },
         {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!serializeRenderFunction:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function serializeRenderFunction(render: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ITabConfig",
+              "canonicalReference": "@gongt/tabui!ITabConfig:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "['render']"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 4,
+            "endIndex": 5
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "render",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "name": "serializeRenderFunction"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/tabui!setDndData:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function setDndData(dataTransfer: "
+            },
+            {
+              "kind": "Content",
+              "text": "null | "
+            },
+            {
+              "kind": "Reference",
+              "text": "DataTransfer",
+              "canonicalReference": "!DataTransfer:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", data: "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDndData",
+              "canonicalReference": "@gongt/tabui!IDndData:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", kind: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DragSourceKind",
+              "canonicalReference": "@gongt/tabui!DragSourceKind:enum"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 8,
+            "endIndex": 9
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "dataTransfer",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "parameterName": "data",
+              "parameterTypeTokenRange": {
+                "startIndex": 4,
+                "endIndex": 5
+              }
+            },
+            {
+              "parameterName": "kind",
+              "parameterTypeTokenRange": {
+                "startIndex": 6,
+                "endIndex": 7
+              }
+            }
+          ],
+          "name": "setDndData"
+        },
+        {
           "kind": "Class",
           "canonicalReference": "@gongt/tabui!TabBody:class",
           "docComment": "",
@@ -1289,27 +2970,21 @@
           "name": "TabBody",
           "members": [
             {
-              "kind": "Constructor",
-              "canonicalReference": "@gongt/tabui!TabBody:constructor(1)",
-              "docComment": "/**\n * Constructs a new instance of the `TabBody` class\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "constructor();"
-                }
-              ],
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": []
-            },
-            {
               "kind": "Method",
               "canonicalReference": "@gongt/tabui!TabBody#addTab:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "addTab(options: "
+                  "text": "addTab(tabId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", { render, ...options }: "
                 },
                 {
                   "kind": "Reference",
@@ -1322,8 +2997,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "TabSwitch",
-                  "canonicalReference": "@gongt/tabui!TabSwitch:class"
+                  "text": "TabView",
+                  "canonicalReference": "@gongt/tabui!TabView:class"
                 },
                 {
                   "kind": "Content",
@@ -1333,17 +3008,24 @@
               "isOptional": false,
               "isStatic": false,
               "returnTypeTokenRange": {
-                "startIndex": 3,
-                "endIndex": 4
+                "startIndex": 5,
+                "endIndex": 6
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "options",
+                  "parameterName": "tabId",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "{ render, ...options }",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1455,17 +3137,16 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "@gongt/tabui!TabBody#contextmenu:member(1)",
+              "canonicalReference": "@gongt/tabui!TabBody#deleteTab:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "protected contextmenu({ x, y }: "
+                  "text": "deleteTab(tabId: "
                 },
                 {
-                  "kind": "Reference",
-                  "text": "MouseEvent",
-                  "canonicalReference": "!MouseEvent:interface"
+                  "kind": "Content",
+                  "text": "number"
                 },
                 {
                   "kind": "Content",
@@ -1490,14 +3171,14 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "{ x, y }",
+                  "parameterName": "tabId",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
                   }
                 }
               ],
-              "name": "contextmenu"
+              "name": "deleteTab"
             },
             {
               "kind": "Method",
@@ -1529,77 +3210,13 @@
               "name": "disconnectedCallback"
             },
             {
-              "kind": "Method",
-              "canonicalReference": "@gongt/tabui!TabBody#onTitleBarDragStart:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "onTitleBarDragStart({ dataTransfer, "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "offsetX",
-                  "canonicalReference": "!MouseEvent#offsetX"
-                },
-                {
-                  "kind": "Content",
-                  "text": ": x, "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "offsetY",
-                  "canonicalReference": "!MouseEvent#offsetY"
-                },
-                {
-                  "kind": "Content",
-                  "text": ": y }: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "DragEvent",
-                  "canonicalReference": "!DragEvent:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 7,
-                "endIndex": 8
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "{ dataTransfer, offsetX: x, offsetY: y }",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                }
-              ],
-              "name": "onTitleBarDragStart"
-            },
-            {
               "kind": "Property",
-              "canonicalReference": "@gongt/tabui!TabBody#value:member",
+              "canonicalReference": "@gongt/tabui!TabBody#show:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "value: "
+                  "text": "show: "
                 },
                 {
                   "kind": "Content",
@@ -1612,7 +3229,7 @@
               ],
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "value",
+              "name": "show",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -1669,7 +3286,175 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "addTab(): "
+                  "text": "addTab(options: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ITabConfig",
+                  "canonicalReference": "@gongt/tabui!ITabConfig:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", position?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "position",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "addTab"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabContainer#attributeChangedCallback:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "attributeChangedCallback(name: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", _oldValue: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | null"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", newValue: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | null"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 8
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "name",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "_oldValue",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "newValue",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "attributeChangedCallback"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@gongt/tabui!TabContainer#collapse:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "collapse: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "collapse",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabContainer#connectedCallback:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "connectedCallback(): "
                 },
                 {
                   "kind": "Content",
@@ -1689,7 +3474,7 @@
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [],
-              "name": "addTab"
+              "name": "connectedCallback"
             },
             {
               "kind": "Property",
@@ -1703,7 +3488,7 @@
                 {
                   "kind": "Reference",
                   "text": "ViewDirection",
-                  "canonicalReference": "@gongt/tabui!~ViewDirection:enum"
+                  "canonicalReference": "@gongt/tabui!ViewDirection:enum"
                 },
                 {
                   "kind": "Content",
@@ -1718,6 +3503,387 @@
                 "endIndex": 2
               },
               "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabContainer#dragstart:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected dragstart(e: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DragEvent",
+                  "canonicalReference": "!DragEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "e",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "dragstart"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabContainer#drop:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected drop(e: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DragEvent",
+                  "canonicalReference": "!DragEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "e",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "drop"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabContainer#onDragEnter:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected onDragEnter(e: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DragEvent",
+                  "canonicalReference": "!DragEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "e",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "onDragEnter"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabContainer#onTabClose:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected onTabClose({ detail }: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CustomEvent",
+                  "canonicalReference": "!CustomEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "{ detail }",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "onTabClose"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabContainer#onTabSwitch:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected onTabSwitch({ detail }: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CustomEvent",
+                  "canonicalReference": "!CustomEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "{ detail }",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "onTabSwitch"
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@gongt/tabui!TabDropZone:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class TabDropZone extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TabDropZone",
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabDropZone#attachElement:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "attachElement(anotherElement: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "HTMLElement",
+                  "canonicalReference": "!HTMLElement:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "anotherElement",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "attachElement"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabDropZone#detachElement:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "detachElement(anotherElement: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "HTMLElement",
+                  "canonicalReference": "!HTMLElement:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "anotherElement",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "detachElement"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabDropZone.get:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static get(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TabDropZone",
+                  "canonicalReference": "@gongt/tabui!TabDropZone:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": true,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "get"
             }
           ],
           "extendsTokenRange": {
@@ -1778,12 +3944,33 @@
                 },
                 {
                   "kind": "Content",
+                  "text": ", position?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
                   "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
                 },
                 {
                   "kind": "Reference",
                   "text": "TabSwitch",
                   "canonicalReference": "@gongt/tabui!TabSwitch:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -1793,8 +3980,8 @@
               "isOptional": false,
               "isStatic": false,
               "returnTypeTokenRange": {
-                "startIndex": 3,
-                "endIndex": 4
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1804,6 +3991,13 @@
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "position",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1915,52 +4109,6 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "@gongt/tabui!TabHeader#contextmenu:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "protected contextmenu({ x, y }: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "MouseEvent",
-                  "canonicalReference": "!MouseEvent:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 3,
-                "endIndex": 4
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "{ x, y }",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                }
-              ],
-              "name": "contextmenu"
-            },
-            {
-              "kind": "Method",
               "canonicalReference": "@gongt/tabui!TabHeader#disconnectedCallback:member(1)",
               "docComment": "",
               "excerptTokens": [
@@ -1990,12 +4138,205 @@
             },
             {
               "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabHeader#indexOf:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "indexOf(itr: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "HTMLElement",
+                  "canonicalReference": "!HTMLElement:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "itr",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "indexOf"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabHeader#onTabScroll:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected onTabScroll({ "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "detail",
+                  "canonicalReference": "!CustomEvent#detail"
+                },
+                {
+                  "kind": "Content",
+                  "text": ": direction }: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CustomEvent",
+                  "canonicalReference": "!CustomEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "{ detail: direction }",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "onTabScroll"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabHeader#onTabScrollByWheel:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected onTabScrollByWheel(e: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "WheelEvent",
+                  "canonicalReference": "!WheelEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "e",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "onTabScrollByWheel"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabHeader#onTabSwitch:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected onTabSwitch({ detail }: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CustomEvent",
+                  "canonicalReference": "!CustomEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "{ detail }",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "onTabSwitch"
+            },
+            {
+              "kind": "Method",
               "canonicalReference": "@gongt/tabui!TabHeader#onTitleBarDragStart:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "onTitleBarDragStart({ dataTransfer, "
+                  "text": "onTitleBarDragStart({ target, dataTransfer, "
                 },
                 {
                   "kind": "Reference",
@@ -2043,7 +4384,7 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "{ dataTransfer, offsetX: x, offsetY: y }",
+                  "parameterName": "{ target, dataTransfer, offsetX: x, offsetY: y }",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
                     "endIndex": 6
@@ -2054,12 +4395,12 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@gongt/tabui!TabHeader#value:member",
+              "canonicalReference": "@gongt/tabui!TabHeader#select:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "value: "
+                  "text": "select: "
                 },
                 {
                   "kind": "Content",
@@ -2072,7 +4413,79 @@
               ],
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "value",
+              "name": "select",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabHeader#setScroll:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "setScroll(pos: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "pos",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "setScroll"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@gongt/tabui!TabHeader#vertical:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "vertical: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "vertical",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -2124,6 +4537,127 @@
             },
             {
               "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabMenu#attributeChangedCallback:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "attributeChangedCallback(name: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", _oldValue: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | null"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", newValue: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | null"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 8
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "name",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "_oldValue",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "newValue",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "attributeChangedCallback"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabMenu#contextmenu:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected contextmenu({ x, y }: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "MouseEvent",
+                  "canonicalReference": "!MouseEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "{ x, y }",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "contextmenu"
+            },
+            {
+              "kind": "Method",
               "canonicalReference": "@gongt/tabui!TabMenu#onButtonClick:member(1)",
               "docComment": "",
               "excerptTokens": [
@@ -2167,6 +4701,121 @@
                 }
               ],
               "name": "onButtonClick"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabMenu#onLeftClick:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "onLeftClick(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "onLeftClick"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabMenu#onMounted:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected onMounted(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IDisposable",
+                  "canonicalReference": "@idlebox/common!IDisposable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "onMounted"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabMenu#onRightClick:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "onRightClick(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "onRightClick"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@gongt/tabui!TabMenu#scrollVisible:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "scrollVisible: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "scrollVisible",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
             }
           ],
           "extendsTokenRange": {
@@ -2342,35 +4991,6 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "@gongt/tabui!TabSwitch#connectedCallback:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "connectedCallback(): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [],
-              "name": "connectedCallback"
-            },
-            {
-              "kind": "Method",
               "canonicalReference": "@gongt/tabui!TabSwitch#contextmenu:member(1)",
               "docComment": "",
               "excerptTokens": [
@@ -2444,12 +5064,12 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "@gongt/tabui!TabSwitch#disconnectedCallback:member(1)",
+              "canonicalReference": "@gongt/tabui!TabSwitch#dragend:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "disconnectedCallback(): "
+                  "text": "protected dragend(): "
                 },
                 {
                   "kind": "Content",
@@ -2469,36 +5089,7 @@
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [],
-              "name": "disconnectedCallback"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "@gongt/tabui!TabSwitch#dispose:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "dispose(): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [],
-              "name": "dispose"
+              "name": "dragend"
             },
             {
               "kind": "Method",
@@ -2507,25 +5098,7 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "protected dragstart({ preventDefault, dataTransfer, "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "offsetX",
-                  "canonicalReference": "!MouseEvent#offsetX"
-                },
-                {
-                  "kind": "Content",
-                  "text": ": x, "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "offsetY",
-                  "canonicalReference": "!MouseEvent#offsetY"
-                },
-                {
-                  "kind": "Content",
-                  "text": ": y }: "
+                  "text": "protected dragstart(e: "
                 },
                 {
                   "kind": "Reference",
@@ -2548,21 +5121,64 @@
               "isOptional": false,
               "isStatic": false,
               "returnTypeTokenRange": {
-                "startIndex": 7,
-                "endIndex": 8
+                "startIndex": 3,
+                "endIndex": 4
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "{ preventDefault, dataTransfer, offsetX: x, offsetY: y }",
+                  "parameterName": "e",
                   "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
+                    "startIndex": 1,
+                    "endIndex": 2
                   }
                 }
               ],
               "name": "dragstart"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabSwitch#getState:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getState(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ITabHeaderConfig",
+                  "canonicalReference": "@gongt/tabui!ITabHeaderConfig:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " & {\n        tabId: number;\n        dataset: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DOMStringMap",
+                  "canonicalReference": "!DOMStringMap:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n    }"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "getState"
             },
             {
               "kind": "Property",
@@ -2693,6 +5309,35 @@
             },
             {
               "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabSwitch#onClick:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected onClick(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "onClick"
+            },
+            {
+              "kind": "Method",
               "canonicalReference": "@gongt/tabui!TabSwitch#onCloseButtonClick:member(1)",
               "docComment": "",
               "excerptTokens": [
@@ -2721,22 +5366,18 @@
               "name": "onCloseButtonClick"
             },
             {
-              "kind": "Property",
-              "canonicalReference": "@gongt/tabui!TabSwitch#onDragStart:member",
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabSwitch#onMounted:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "readonly onDragStart: "
+                  "text": "protected onMounted(): "
                 },
                 {
                   "kind": "Reference",
-                  "text": "EventRegister",
-                  "canonicalReference": "@idlebox/common!EventRegister:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<string>"
+                  "text": "IDisposable",
+                  "canonicalReference": "@idlebox/common!IDisposable:interface"
                 },
                 {
                   "kind": "Content",
@@ -2744,22 +5385,24 @@
                 }
               ],
               "isOptional": false,
-              "releaseTag": "Public",
-              "name": "onDragStart",
-              "propertyTypeTokenRange": {
+              "isStatic": false,
+              "returnTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 3
+                "endIndex": 2
               },
-              "isStatic": false
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "onMounted"
             },
             {
               "kind": "Property",
-              "canonicalReference": "@gongt/tabui!TabSwitch#panelId:member",
+              "canonicalReference": "@gongt/tabui!TabSwitch#tabId:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "readonly panelId: "
+                  "text": "readonly tabId: "
                 },
                 {
                   "kind": "Content",
@@ -2772,7 +5415,7 @@
               ],
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "panelId",
+              "name": "tabId",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -2983,12 +5626,12 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "@gongt/tabui!TabView#dispose:member(1)",
+              "canonicalReference": "@gongt/tabui!TabView#disconnectedCallback:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "dispose(): "
+                  "text": "disconnectedCallback(): "
                 },
                 {
                   "kind": "Content",
@@ -3008,7 +5651,7 @@
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [],
-              "name": "dispose"
+              "name": "disconnectedCallback"
             },
             {
               "kind": "Property",
@@ -3038,32 +5681,33 @@
               "isStatic": false
             },
             {
-              "kind": "Property",
-              "canonicalReference": "@gongt/tabui!TabView#render:member",
+              "kind": "Method",
+              "canonicalReference": "@gongt/tabui!TabView#removeRender:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "render?: "
+                  "text": "removeRender(): "
                 },
                 {
-                  "kind": "Reference",
-                  "text": "IRenderFunction",
-                  "canonicalReference": "@gongt/tabui!~IRenderFunction:interface"
+                  "kind": "Content",
+                  "text": "void"
                 },
                 {
                   "kind": "Content",
                   "text": ";"
                 }
               ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "render",
-              "propertyTypeTokenRange": {
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
               },
-              "isStatic": false
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "removeRender"
             }
           ],
           "extendsTokenRange": {
@@ -3071,6 +5715,105 @@
             "endIndex": 3
           },
           "implementsTokenRanges": []
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "@gongt/tabui!ViewDirection:enum",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare enum ViewDirection "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ViewDirection",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@gongt/tabui!ViewDirection.bottom:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "bottom = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"bottom\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "bottom",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@gongt/tabui!ViewDirection.left:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "left = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"left\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "left",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@gongt/tabui!ViewDirection.right:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "right = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"right\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "right",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@gongt/tabui!ViewDirection.top:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "top = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"top\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "top",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
         }
       ]
     }

@@ -1,5 +1,5 @@
 'use strict';
-const render = require('path').resolve(__dirname, 'render.cjs');
+const renderFile = require('path').resolve(__dirname, 'render.cjs');
 const { loadStyle, TabContainer } = require('@gongt/tabui');
 
 loadStyle();
@@ -16,7 +16,8 @@ const tabN = new TabContainer();
 for (let i = 0; i < 20; i++) {
 	tabN.addTab({
 		title: 'Tab ' + i,
-		render,
+		renderFile,
+		dataset: { n: i },
 	});
 }
 document.getElementById('tabN1').append(tabN);
@@ -26,37 +27,43 @@ tabN2.direction = 'right';
 for (let i = 0; i < 20; i++) {
 	tabN2.addTab({
 		title: 'Tab ' + i,
-		render,
+		renderFile,
+		dataset: { n: i },
 	});
 }
 document.getElementById('tabN2').append(tabN2);
 
 function test(num, dir) {
 	const tab = new TabContainer();
+	let i = 0;
 	tab.direction = dir;
 	tab.addTab({
 		title: 'First Tab',
-		render,
+		renderFile,
+		dataset: { n: ++i },
 	});
 	tab.addTab({
 		title: 'Unmovable',
 		movable: false,
-		render,
+		renderFile,
+		dataset: { n: ++i },
 	});
 	tab.addTab({
 		title: 'Undetachable',
 		detachable: false,
-		render,
+		renderFile,
+		dataset: { n: ++i },
 	});
 	tab.addTab({
-		title: 'With Img',
 		iconClass: 'testImage',
-		render,
+		renderFile,
+		dataset: { n: ++i },
 	});
 	tab.addTab({
 		title: 'Pinned',
 		closable: false,
-		render,
+		renderFile,
+		dataset: { n: ++i },
 	});
 	document.getElementById('tab' + num).append(tab);
 }
