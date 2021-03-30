@@ -1,0 +1,156 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Watch All 5 Projects",
+			"problemMatcher": [],
+			"dependsOn": [
+				"监视（1） - @gongt/window-manager",
+				"监视（2） - @gongt/tabui",
+				"监视（3） - @gongt/frameui",
+				"监视（4） - @gongt/custom-element-helpers",
+				"监视（5） - @gongt/symbols"
+			]
+		},
+		{
+			// This task is created by @build-script/rush-tools
+			"label": "监视（1） - @gongt/window-manager",
+			"type": "process",
+			"isBackground": true,
+			"runOptions": {
+				"instanceLimit": 1
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"command": "${workspaceFolder}/common/temp/pnpm-local/node_modules/.bin/pnpm",
+			"problemMatcher": {
+				"base": "$tsc-watch",
+				"fileLocation": ["relative", "${workspaceFolder}/projects/window-manager"]
+			},
+			"group": "build",
+			"args": ["run", "watch"],
+			"options": {
+				"_is_build": "true",
+				"cwd": "${workspaceFolder}/projects/window-manager"
+			}
+		},
+		{
+			// This task is created by @build-script/rush-tools
+			"label": "监视（2） - @gongt/tabui",
+			"type": "process",
+			"isBackground": true,
+			"runOptions": {
+				"instanceLimit": 1
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"command": "${workspaceFolder}/common/temp/pnpm-local/node_modules/.bin/pnpm",
+			"problemMatcher": {
+				"base": "$tsc-watch",
+				"fileLocation": ["relative", "${workspaceFolder}/projects/tabui"]
+			},
+			"group": "build",
+			"args": ["run", "watch"],
+			"options": {
+				"_is_build": "true",
+				"cwd": "${workspaceFolder}/projects/tabui"
+			}
+		},
+		{
+			// This task is created by @build-script/rush-tools
+			"label": "监视（3） - @gongt/frameui",
+			"type": "process",
+			"isBackground": true,
+			"runOptions": {
+				"instanceLimit": 1
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"command": "${workspaceFolder}/common/temp/pnpm-local/node_modules/.bin/pnpm",
+			"problemMatcher": {
+				"base": "$tsc-watch",
+				"fileLocation": ["relative", "${workspaceFolder}/projects/frameui"]
+			},
+			"group": "build",
+			"args": ["run", "watch"],
+			"options": {
+				"_is_build": "true",
+				"cwd": "${workspaceFolder}/projects/frameui"
+			}
+		},
+		{
+			// This task is created by @build-script/rush-tools
+			"label": "监视（4） - @gongt/custom-element-helpers",
+			"type": "process",
+			"isBackground": true,
+			"runOptions": {
+				"instanceLimit": 1
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"command": "${workspaceFolder}/common/temp/pnpm-local/node_modules/.bin/pnpm",
+			"problemMatcher": {
+				"base": "$tsc-watch",
+				"fileLocation": ["relative", "${workspaceFolder}/projects/custom-element-helpers"]
+			},
+			"group": "build",
+			"args": ["run", "watch"],
+			"options": {
+				"_is_build": "true",
+				"cwd": "${workspaceFolder}/projects/custom-element-helpers"
+			}
+		},
+		{
+			// This task is created by @build-script/rush-tools
+			"label": "监视（5） - @gongt/symbols",
+			"type": "process",
+			"isBackground": true,
+			"runOptions": {
+				"instanceLimit": 1
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"command": "${workspaceFolder}/common/temp/pnpm-local/node_modules/.bin/pnpm",
+			"problemMatcher": {
+				"base": "$tsc-watch",
+				"fileLocation": ["relative", "${workspaceFolder}/projects/symbols"]
+			},
+			"group": "build",
+			"args": ["run", "watch"],
+			"options": {
+				"_is_build": "true",
+				"cwd": "${workspaceFolder}/projects/symbols"
+			}
+		}
+	]
+}

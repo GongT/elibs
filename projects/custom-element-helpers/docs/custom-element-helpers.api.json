@@ -1,0 +1,1584 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.13.2",
+    "schemaVersion": 1003,
+    "oldestForwardsCompatibleVersion": 1001
+  },
+  "kind": "Package",
+  "canonicalReference": "@gongt/custom-element-helpers!",
+  "docComment": "",
+  "name": "@gongt/custom-element-helpers",
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "@gongt/custom-element-helpers!",
+      "name": "",
+      "members": [
+        {
+          "kind": "Variable",
+          "canonicalReference": "@gongt/custom-element-helpers!defauleValueMetaKey:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "defauleValueMetaKey = \"propertyDefault\""
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "defauleValueMetaKey",
+          "variableTypeTokenRange": {
+            "startIndex": 0,
+            "endIndex": 0
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!DefineCustomElements:function(1)",
+          "docComment": "/**\n * 注册CustomElement\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function DefineCustomElements(options?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ElementDefinitionOptions",
+              "canonicalReference": "!ElementDefinitionOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "(elementConstructor: typeof "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:var"
+            },
+            {
+              "kind": "Content",
+              "text": ") => void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "options",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "DefineCustomElements"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!disposeOnDomDetach:function(1)",
+          "docComment": "/**\n * 把动态取消挂载过程注册到CustomElement对象上\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function disposeOnDomDetach(target: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", d: "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDisposable",
+              "canonicalReference": "@idlebox/common!IDisposable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "target",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "d",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "name": "disposeOnDomDetach"
+        },
+        {
+          "kind": "Namespace",
+          "canonicalReference": "@gongt/custom-element-helpers!domConvert:namespace",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare namespace domConvert "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "domConvert",
+          "members": [
+            {
+              "kind": "Variable",
+              "canonicalReference": "@gongt/custom-element-helpers!domConvert.boolean:var",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "boolean: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Required",
+                  "canonicalReference": "!Required:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Pick",
+                  "canonicalReference": "!Pick:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IGetterSetter",
+                  "canonicalReference": "@gongt/custom-element-helpers!~IGetterSetter:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<any, boolean>, \"get\" | \"set\">> & "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "WithDefaultCreator",
+                  "canonicalReference": "@gongt/custom-element-helpers!~WithDefaultCreator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<boolean>"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "boolean",
+              "variableTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 9
+              }
+            },
+            {
+              "kind": "Function",
+              "canonicalReference": "@gongt/custom-element-helpers!domConvert.enumerate:function(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "function enumerate<K extends "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">(list: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<K, string>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", defaultValue: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "K"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "{\n        get(value: K | null): string;\n        set(value: K): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<K, string>[K] | null;\n        init(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<K, string>[K];\n    }"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 8,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "list",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "defaultValue",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                }
+              ],
+              "typeParameters": [
+                {
+                  "typeParameterName": "K",
+                  "constraintTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "defaultTypeTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  }
+                }
+              ],
+              "name": "enumerate"
+            },
+            {
+              "kind": "Variable",
+              "canonicalReference": "@gongt/custom-element-helpers!domConvert.interger:var",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "interger: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Required",
+                  "canonicalReference": "!Required:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Pick",
+                  "canonicalReference": "!Pick:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IGetterSetter",
+                  "canonicalReference": "@gongt/custom-element-helpers!~IGetterSetter:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<any, number>, \"get\" | \"set\">> & "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "WithDefaultCreator",
+                  "canonicalReference": "@gongt/custom-element-helpers!~WithDefaultCreator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<number>"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "interger",
+              "variableTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 9
+              }
+            },
+            {
+              "kind": "Variable",
+              "canonicalReference": "@gongt/custom-element-helpers!domConvert.string:var",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "string: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Required",
+                  "canonicalReference": "!Required:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Pick",
+                  "canonicalReference": "!Pick:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IGetterSetter",
+                  "canonicalReference": "@gongt/custom-element-helpers!~IGetterSetter:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<any, string>, \"get\" | \"set\">> & "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "WithDefaultCreator",
+                  "canonicalReference": "@gongt/custom-element-helpers!~WithDefaultCreator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "string",
+              "variableTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 9
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!DOMEvent:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function DOMEvent({ eventName, preventDefault, stopPropagation, capture, once, passive, targetProperty, targetSelector, target: $target, }?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Partial",
+              "canonicalReference": "!Partial:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "IEventRegisterOptions",
+              "canonicalReference": "@gongt/custom-element-helpers!~IEventRegisterOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "<T extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">(target: T, propertyKey: string) => void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 9
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "{ eventName, preventDefault, stopPropagation, capture, once, passive, targetProperty, targetSelector, target: $target, }",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              }
+            }
+          ],
+          "name": "DOMEvent"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!DOMEventTrigger:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function DOMEventTrigger<T>(eventInit?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ICustomEventInit",
+              "canonicalReference": "@gongt/custom-element-helpers!ICustomEventInit:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "(self: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", propKey: string) => void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "eventInit",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "DOMEventTrigger"
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@gongt/custom-element-helpers!DOMEventTrigger:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DOMEventTrigger<T> "
+            }
+          ],
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "DOMEventTrigger",
+          "members": [
+            {
+              "kind": "CallSignature",
+              "canonicalReference": "@gongt/custom-element-helpers!DOMEventTrigger:call(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "(e: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "T"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "e",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ]
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!DOMGetSet:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function DOMGetSet<ELE extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", T>({ get, set, init }?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "IGetterSetter",
+              "canonicalReference": "@gongt/custom-element-helpers!~IGetterSetter:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<ELE, T>"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "(target: ELE, propertyKey: string | symbol) => void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 7
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "{ get, set, init }",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              }
+            }
+          ],
+          "typeParameters": [
+            {
+              "typeParameterName": "ELE",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            },
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "DOMGetSet"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!DOMOnAttach:function(1)",
+          "docComment": "/**\n * 修饰方法，挂载时执行，返回IDisposable，取消挂载时销毁\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function DOMOnAttach(singleTime?: "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "(target: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", propKey: string) => void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "singleTime",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "DOMOnAttach"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!domSetAttribute:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function domSetAttribute(dom: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", qualifiedName: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", value: "
+            },
+            {
+              "kind": "Content",
+              "text": "string | null"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 7,
+            "endIndex": 8
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "dom",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "qualifiedName",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            },
+            {
+              "parameterName": "value",
+              "parameterTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              }
+            }
+          ],
+          "name": "domSetAttribute"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!domSetBooleanAttribute:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function domSetBooleanAttribute(dom: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", qualifiedName: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", value: "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 7,
+            "endIndex": 8
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "dom",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "qualifiedName",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            },
+            {
+              "parameterName": "value",
+              "parameterTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              }
+            }
+          ],
+          "name": "domSetBooleanAttribute"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!getCustomPropertyKeys:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getCustomPropertyKeys<T>(instance: "
+            },
+            {
+              "kind": "Content",
+              "text": "T"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "keyof T"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "instance",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "getCustomPropertyKeys"
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@gongt/custom-element-helpers!getterSetterMetaKey:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "getterSetterMetaKey = \"gettersetter\""
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "getterSetterMetaKey",
+          "variableTypeTokenRange": {
+            "startIndex": 0,
+            "endIndex": 0
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!handleDragAwayEvent:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function handleDragAwayEvent(element: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", away: "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDragHandler",
+              "canonicalReference": "@gongt/custom-element-helpers!IDragHandler:type"
+            },
+            {
+              "kind": "Content",
+              "text": ", done: "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDragHandler",
+              "canonicalReference": "@gongt/custom-element-helpers!IDragHandler:type"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDisposable",
+              "canonicalReference": "@idlebox/common!IDisposable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 7,
+            "endIndex": 8
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "element",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "away",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            },
+            {
+              "parameterName": "done",
+              "parameterTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              }
+            }
+          ],
+          "name": "handleDragAwayEvent"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!handleDragOverEvent:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function handleDragOverEvent(element: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", enter: "
+            },
+            {
+              "kind": "Content",
+              "text": "(ev: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DragEvent",
+              "canonicalReference": "!DragEvent:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => void"
+            },
+            {
+              "kind": "Content",
+              "text": ", leave: "
+            },
+            {
+              "kind": "Content",
+              "text": "(ev: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DragEvent",
+              "canonicalReference": "!DragEvent:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => void"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDisposable",
+              "canonicalReference": "@idlebox/common!IDisposable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 11,
+            "endIndex": 12
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "element",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "enter",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 6
+              }
+            },
+            {
+              "parameterName": "leave",
+              "parameterTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 10
+              }
+            }
+          ],
+          "name": "handleDragOverEvent"
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@gongt/custom-element-helpers!ICustomEventInit:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ICustomEventInit extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "EventInit",
+              "canonicalReference": "!EventInit:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ICustomEventInit",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/custom-element-helpers!ICustomEventInit#eventName:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "eventName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "eventName",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/custom-element-helpers!ICustomEventInit#target:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "target?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Window",
+                  "canonicalReference": "!Window:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "HTMLElement",
+                  "canonicalReference": "!HTMLElement:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "target",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/custom-element-helpers!ICustomEventInit#targetProperty:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "targetProperty?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "targetProperty",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/custom-element-helpers!ICustomEventInit#targetSelector:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "targetSelector?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "targetSelector",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@gongt/custom-element-helpers!IDragEvent:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IDragEvent extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "MouseEvent",
+              "canonicalReference": "!MouseEvent:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IDragEvent",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@gongt/custom-element-helpers!IDragEvent#dataTransfer:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "dataTransfer: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DataTransfer",
+                  "canonicalReference": "!DataTransfer:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "dataTransfer",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@gongt/custom-element-helpers!IDragHandler:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type IDragHandler = "
+            },
+            {
+              "kind": "Content",
+              "text": "(ev: "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDragEvent",
+              "canonicalReference": "@gongt/custom-element-helpers!IDragEvent:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IDragHandler",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!isElementDragAway:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function isElementDragAway(element: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Element",
+              "canonicalReference": "!Element:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 4,
+            "endIndex": 5
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "element",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "name": "isElementDragAway"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!isFirstMount:function(1)",
+          "docComment": "/**\n * 判断CustomElement是否是第一次挂载到dom\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function isFirstMount(ele: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "ele",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "isFirstMount"
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@gongt/custom-element-helpers!onDragDropFinished:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "onDragDropFinished: "
+            },
+            {
+              "kind": "Reference",
+              "text": "EventRegister",
+              "canonicalReference": "@idlebox/common!EventRegister:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "IDragEvent",
+              "canonicalReference": "@gongt/custom-element-helpers!IDragEvent:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "onDragDropFinished",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@gongt/custom-element-helpers!registerLifecycle:function(1)",
+          "docComment": "/**\n * 把静态取消挂载过程注册到CustomElement的prototype上\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function registerLifecycle(targetPrototype: "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLElement",
+              "canonicalReference": "!HTMLElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", callback: "
+            },
+            {
+              "kind": "Content",
+              "text": "() => "
+            },
+            {
+              "kind": "Reference",
+              "text": "IDisposable",
+              "canonicalReference": "@idlebox/common!IDisposable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | void"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 7,
+            "endIndex": 8
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "targetPrototype",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "callback",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 6
+              }
+            }
+          ],
+          "name": "registerLifecycle"
+        }
+      ]
+    }
+  ]
+}

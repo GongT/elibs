@@ -1,16 +1,22 @@
-import { linux_case_hyphen } from '@idlebox/common';
+import { definePublicConstant, linux_case_hyphen } from '@idlebox/common';
+import { customElementInitStateSymbol } from '@gongt/symbols/lib';
+import { defauleValueMetaKey, domSetAttribute, getterSetterMetaKey } from '../dom/dom-getset';
 import { callLifecycleCallbacks, disposeLifecycle, registerLifecycle } from './custom-lifecycle';
-import { defauleValueMetaKey, DOMSetAttribute, getterSetterMetaKey } from './dom-getset';
-import { definePublicConstant } from './helper';
 
 const firstMountSymbol = Symbol('custom-element-first-connect');
-const initStateSymbol = Symbol.for('@tabui/init');
-export const initState: any = initStateSymbol;
 
+/**
+ * 判断CustomElement是否是第一次挂载到dom
+ * @public
+ */
 export function isFirstMount(ele: HTMLElement) {
 	return (ele as any)[firstMountSymbol] === undefined;
 }
 
+/**
+ * 注册CustomElement
+ * @public
+ */
 export function DefineCustomElements(options?: ElementDefinitionOptions) {
 	return function DefineCustomElementsDecorator(elementConstructor: typeof HTMLElement) {
 		const anyCtor = elementConstructor as any;
@@ -57,9 +63,9 @@ export function DefineCustomElements(options?: ElementDefinitionOptions) {
 				for (const key of customValueKeys) {
 					if (!this.hasAttribute(key)) {
 						if (customValueDefaults && customValueDefaults[key]) {
-							DOMSetAttribute(this, key, customValueDefaults[key].call(this));
+							domSetAttribute(this, key, customValueDefaults[key].call(this));
 						} else if ((this as any).attributeChangedCallback) {
-							(this as any).attributeChangedCallback.call(this, key, initStateSymbol, null);
+							(this as any).attributeChangedCallback.call(this, key, customElementInitStateSymbol, null);
 						}
 					}
 				}

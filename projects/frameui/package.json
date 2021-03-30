@@ -1,0 +1,38 @@
+{
+	"name": "@gongt/frameui",
+	"type": "module",
+	"version": "0.0.0",
+	"license": "MIT",
+	"main": "./lib/_export_all_in_one_index.cjs",
+	"module": "./lib/_export_all_in_one_index.js",
+	"typings": "docs/package-public.d.ts",
+	"exports": {
+		".": {
+			"require": "./lib/_export_all_in_one_index.cjs",
+			"import": "./lib/_export_all_in_one_index.js"
+		}
+	},
+	"scripts": {
+		"build": "build-script build",
+		"clean": "rimraf lib",
+		"distclean": "build-script distclean",
+		"prepack": "build-script rebuild",
+		"test": "build-script test",
+		"upgrade": "build-script upgrade",
+		"watch": "build-script watch"
+	},
+	"dependencies": {
+		"@gongt/custom-element-helpers": "^0.0.0",
+		"@gongt/symbols": "^0.0.0",
+		"tslib": "^2.1.0"
+	},
+	"devDependencies": {
+		"@build-script/builder": "^2.1.8",
+		"@build-script/single-dog-asset": "^1.0.12",
+		"@build-script/typescript-transformer-dual-package": "^1.0.20",
+		"gulp": "^4.0.2",
+		"ttypescript": "^1.5.12",
+		"typescript": "^4.2.3"
+	},
+	"monorepo": "rush"
+}

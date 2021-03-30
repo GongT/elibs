@@ -1,7 +1,11 @@
+import {
+	DefineCustomElements,
+	domConvert,
+	DOMEvent,
+	DOMGetSet,
+	getCustomPropertyKeys,
+} from '@gongt/custom-element-helpers';
 import { camelCase } from '@idlebox/common';
-import { DefineCustomElements } from '../common/custom-elements';
-import { DOMEvent } from '../common/dom-event';
-import { DOMGetterSetter, getCustomProperties, GetterSetter } from '../common/dom-getset';
 import { DragSourceKind, setDndData } from '../common/drag-and-drop';
 import { __defineTabId, __getTabId } from '../common/helper';
 import { IPCID } from '../common/ipc.id';
@@ -241,7 +245,7 @@ export class TabHeader extends HTMLElement {
 		const tabId = options.tabId || (await rendererInvoke(IPCID.GetNextTabGuid));
 		__defineTabId(newTab, tabId);
 
-		for (const key of getCustomProperties(newTab)) {
+		for (const key of getCustomPropertyKeys(newTab)) {
 			const cKey = camelCase(key);
 			if (options.hasOwnProperty(cKey)) {
 				// console.log('addTab:%s = %s', key, (options as any)[key]);
@@ -278,8 +282,8 @@ export class TabHeader extends HTMLElement {
 		}
 	}
 
-	@GetterSetter(DOMGetterSetter.interger(0)) public declare select: number;
-	@GetterSetter(DOMGetterSetter.boolean) public declare vertical: boolean;
+	@DOMGetSet(domConvert.interger(0)) public declare select: number;
+	@DOMGetSet(domConvert.boolean) public declare vertical: boolean;
 }
 
 function offsetEndPosition(vertical: boolean, item: HTMLElement) {

@@ -3,8 +3,8 @@
 	"version": "1.0.0",
 	"private": true,
 	"dependencies": {
-		"@build-script/rush-tools": "latest",
-		"@build-script/single-dog-asset": "^1.0.11",
-		"@build-script/poormans-package-change": "latest"
+		"@build-script/rush-tools": "^1.2.5",
+		"@build-script/single-dog-asset": "^1.0.12",
+		"@build-script/poormans-package-change": "^1.0.15"
 	}
 }

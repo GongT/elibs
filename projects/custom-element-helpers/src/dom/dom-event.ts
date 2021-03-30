@@ -1,5 +1,5 @@
 import { addDisposableEventListener, Disposable } from '@idlebox/common';
-import { registerLifecycle } from './custom-lifecycle';
+import { registerLifecycle } from '../base/custom-lifecycle';
 
 interface IEventRegisterOptions {
 	capture: boolean;

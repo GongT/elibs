@@ -1,9 +1,12 @@
+import {
+	DefineCustomElements,
+	domConvert,
+	DOMEvent,
+	DOMGetSet,
+	DOMOnAttach,
+	handleDragOverEvent,
+} from '@gongt/custom-element-helpers';
 import { IDisposable } from '@idlebox/common';
-import { DefineCustomElements } from '../common/custom-elements';
-import { DOMInit } from '../common/custom-lifecycle';
-import { handleDragOverEvent } from '../common/dom-drag-over';
-import { DOMEvent } from '../common/dom-event';
-import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
 import { IPanelMenuRequest, IPCID } from '../common/ipc.id';
 import { rendererInvoke } from '../common/ipc.renderer';
 import { TabDropZone } from './dropzone';
@@ -46,7 +49,7 @@ export class TabMenu extends HTMLElement {
 		this.append(this.$spacer, $vparent);
 	}
 
-	@DOMInit()
+	@DOMOnAttach()
 	protected onMounted(): IDisposable {
 		return handleDragOverEvent(this, this.handleDragEnter, this.handleDragLeave);
 	}
@@ -85,7 +88,7 @@ export class TabMenu extends HTMLElement {
 	attributeChangedCallback(name: string, _oldValue: string | null, newValue: string | null) {
 		// console.log('[%s] %s : %s => %s', this.constructor.name, name, _oldValue, newValue);
 		if (name === 'scroll-visible') {
-			const bVal = DOMGetterSetter.boolean.get(newValue);
+			const bVal = domConvert.boolean.get(newValue);
 			if (bVal) {
 				this.$scrollLeft.classList.remove('hide');
 				this.$scrollRight.classList.remove('hide');
@@ -98,5 +101,5 @@ export class TabMenu extends HTMLElement {
 		}
 	}
 
-	@GetterSetter(DOMGetterSetter.boolean) public declare scrollVisible: boolean;
+	@DOMGetSet(domConvert.boolean) public declare scrollVisible: boolean;
 }

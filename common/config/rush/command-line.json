@@ -6,14 +6,14 @@
 			"name": "fix",
 			"summary": "同步各个项目的版本号",
 			"safeForSimultaneousRushProcesses": true,
-			"shellCommand": "node @build-script/rush-tools/bin.cjs autofix"
+			"shellCommand": "rush-tools autofix"
 		},
 		{
 			"commandKind": "global",
 			"name": "upgrade",
 			"summary": "更新所有项目的依赖版本到最新，注意：执行后需要手动运行rush update -p",
 			"allowWarningsInSuccessfulBuild": true,
-			"shellCommand": "node @build-script/rush-tools/bin.cjs check-update"
+			"shellCommand": "rush-tools check-update"
 		},
 		{
 			"commandKind": "bulk",

@@ -1,5 +1,4 @@
-import { DefineCustomElements } from '../common/custom-elements';
-import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
+import { DefineCustomElements, domConvert, DOMGetSet } from '@gongt/custom-element-helpers';
 import { __getTabId } from '../common/helper';
 import { ITabBodyConfig } from '../common/type';
 import { TabView } from './view';
@@ -119,5 +118,5 @@ export class TabBody extends HTMLElement {
 		}
 	}
 
-	@GetterSetter(DOMGetterSetter.interger(0)) public declare show: number;
+	@DOMGetSet(domConvert.interger(0)) public declare show: number;
 }

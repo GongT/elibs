@@ -28,19 +28,21 @@
 		"start": "electron --no-sandbox tests/main.cjs"
 	},
 	"dependencies": {
-		"@idlebox/common": "^1.1.6",
+		"@idlebox/common": "^1.1.7",
 		"reflect-metadata": "^0.1.13",
+		"@gongt/symbols": "^0.0.0",
+		"@gongt/custom-element-helpers": "^0.0.0",
 		"sass": "^1.32.8",
 		"tslib": "^2.1.0"
 	},
 	"devDependencies": {
 		"@build-script/builder": "^2.1.8",
-		"@build-script/single-dog-asset": "^1.0.11",
+		"@build-script/single-dog-asset": "^1.0.12",
 		"@build-script/typescript-transformer-dual-package": "^1.0.20",
-		"electron": "^12.0.1",
+		"electron": "^12.0.2",
 		"gulp": "^4.0.2",
-		"react": "^17.0.1",
-		"react-dom": "^17.0.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
 		"ttypescript": "^1.5.12",
 		"typescript": "^4.2.3"
 	}

@@ -1,4 +1,4 @@
-import { DefineCustomElements } from '../common/custom-elements';
+import { DefineCustomElements } from '@gongt/custom-element-helpers';
 import { ViewDirection } from '../common/type';
 import { TabContainer } from './container';
 

@@ -1,0 +1,25 @@
+{
+	"name": "@gongt/symbols",
+	"version": "0.0.0",
+	"author": "GongT <admin@gongt.me> https://github.com/gongt/",
+	"license": "MIT",
+	"type": "commonjs",
+	"typings": "lib/index.d.ts",
+	"main": "lib/index.js",
+	"scripts": {
+		"build": "build-script build",
+		"clean": "rimraf lib",
+		"distclean": "build-script distclean",
+		"prepack": "build-script rebuild",
+		"upgrade": "build-script upgrade",
+		"watch": "build-script watch"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@build-script/builder": "^2.1.8",
+		"@build-script/single-dog-asset": "^1.0.12",
+		"gulp": "^4.0.2",
+		"typescript": "^4.2.3",
+		"ts-node": "^9.1.1"
+	}
+}

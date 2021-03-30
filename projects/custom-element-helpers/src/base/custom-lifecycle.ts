@@ -4,9 +4,13 @@ import { isFirstMount } from './custom-elements';
 const customElementInitCallbacksAtPrototype = Symbol('eventDisposable');
 const domDisposableSymbol = Symbol.for('domDisposable');
 
-export function DOMInit(singleTime = false) {
-	return function DOMInitDecorator(target: HTMLElement, propKey: string) {
-		registerLifecycle(target, function DOMInitHandler(this: any, ...args: any[]) {
+/**
+ * 修饰方法，挂载时执行，返回IDisposable，取消挂载时销毁
+ * @public
+ */
+export function DOMOnAttach(singleTime = false) {
+	return function DOMOnAttachDecorator(target: HTMLElement, propKey: string) {
+		registerLifecycle(target, function DOMOnAttachHandler(this: any, ...args: any[]) {
 			if (singleTime && !isFirstMount(this)) {
 				return undefined;
 			}
@@ -15,6 +19,10 @@ export function DOMInit(singleTime = false) {
 	};
 }
 
+/**
+ * 把静态取消挂载过程注册到CustomElement的prototype上
+ * @public
+ */
 export function registerLifecycle(targetPrototype: HTMLElement, callback: () => IDisposable | void) {
 	if (!Reflect.hasMetadata(customElementInitCallbacksAtPrototype, targetPrototype)) {
 		Reflect.defineMetadata(customElementInitCallbacksAtPrototype, [], targetPrototype);
@@ -47,7 +55,9 @@ export function callLifecycleCallbacks(target: any) {
 	}
 }
 
+/** @internal */
 export function disposeLifecycle(target: HTMLElement): void;
+/** @internal */
 export function disposeLifecycle(target: any) {
 	if (target[domDisposableSymbol]) {
 		target[domDisposableSymbol].dispose();
@@ -55,8 +65,13 @@ export function disposeLifecycle(target: any) {
 	}
 }
 
-export function disposeOnDetach(target: HTMLElement, d: IDisposable): void;
-export function disposeOnDetach(target: any, d: IDisposable) {
+/**
+ * 把动态取消挂载过程注册到CustomElement对象上
+ * @public
+ */
+export function disposeOnDomDetach(target: HTMLElement, d: IDisposable): void;
+/** @public */
+export function disposeOnDomDetach(target: any, d: IDisposable) {
 	if (!target[domDisposableSymbol]) {
 		target[domDisposableSymbol] = new Disposable();
 	}

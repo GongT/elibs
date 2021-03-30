@@ -1,6 +1,10 @@
-import { DefineCustomElements } from '../common/custom-elements';
-import { DOMEvent } from '../common/dom-event';
-import { DOMGetterSetter, DOMSetBooleanAttribute, GetterSetter } from '../common/dom-getset';
+import {
+	DefineCustomElements,
+	domConvert,
+	DOMEvent,
+	DOMGetSet,
+	domSetBooleanAttribute,
+} from '@gongt/custom-element-helpers';
 import {
 	attachMoreDndData,
 	checkAllTabsUndetachable,
@@ -141,13 +145,13 @@ export class TabContainer extends HTMLElement {
 		// console.log('[%s] %s : %s => %s', this.constructor.name, name, _oldValue, _newValue);
 		if (name === 'collapse') {
 		} else if (name === 'direction') {
-			DOMSetBooleanAttribute(this.$header, 'vertical', newValue === 'left' || newValue === 'right');
+			domSetBooleanAttribute(this.$header, 'vertical', newValue === 'left' || newValue === 'right');
 		} else {
 			console.warn('Unknown change key: %s', name);
 		}
 	}
 
-	@GetterSetter(DOMGetterSetter.boolean) public declare collapse: boolean;
-	@GetterSetter(DOMGetterSetter.enumerate(ViewDirection, ViewDirection.bottom))
+	@DOMGetSet(domConvert.boolean) public declare collapse: boolean;
+	@DOMGetSet(domConvert.enumerate(ViewDirection, ViewDirection.bottom))
 	public declare direction: ViewDirection;
 }

@@ -1,7 +1,8 @@
 {
-	"name": "@gongt/dom-root-render",
+	"name": "@gongt/custom-element-helpers",
 	"type": "module",
 	"version": "0.0.0",
+	"author": "GongT <admin@gongt.me> https://github.com/gongt/",
 	"license": "MIT",
 	"main": "./lib/_export_all_in_one_index.cjs",
 	"module": "./lib/_export_all_in_one_index.js",
@@ -21,14 +22,19 @@
 		"upgrade": "build-script upgrade",
 		"watch": "build-script watch"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"@idlebox/common": "^1.1.7",
+		"reflect-metadata": "^0.1.13",
+		"@gongt/symbols": "^0.0.0",
+		"tslib": "^2.1.0"
+	},
 	"devDependencies": {
 		"@build-script/builder": "^2.1.8",
-		"@build-script/single-dog-asset": "^1.0.11",
+		"@build-script/export-all-in-one": "^3.0.23",
+		"@build-script/single-dog-asset": "^1.0.12",
 		"@build-script/typescript-transformer-dual-package": "^1.0.20",
 		"gulp": "^4.0.2",
 		"ttypescript": "^1.5.12",
 		"typescript": "^4.2.3"
-	},
-	"monorepo": "rush"
+	}
 }

@@ -1,12 +1,18 @@
+import {
+	DefineCustomElements,
+	disposeOnDomDetach,
+	domConvert,
+	DOMEvent,
+	DOMEventTrigger,
+	DOMGetSet,
+	DOMOnAttach,
+	handleDragAwayEvent,
+	handleDragOverEvent,
+	isElementDragAway,
+} from '@gongt/custom-element-helpers';
+import { customElementInitStateSymbol } from '@gongt/symbols';
 import { IDisposable } from '@idlebox/common';
 import { MenuItemConstructorOptions } from 'electron';
-import { DefineCustomElements, initState } from '../common/custom-elements';
-import { disposeOnDetach, DOMInit } from '../common/custom-lifecycle';
-import { handleDragAwayEvent, isElementDragAway } from '../common/dom-drag-away';
-import { handleDragOverEvent } from '../common/dom-drag-over';
-import { DOMEvent } from '../common/dom-event';
-import { DOMEventTrigger } from '../common/dom-event-trigger';
-import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
 import { DragSourceKind, setDndData } from '../common/drag-and-drop';
 import { IPCID, ITabMenuRequest } from '../common/ipc.id';
 import { rendererInvoke } from '../common/ipc.renderer';
@@ -58,9 +64,9 @@ export class TabSwitch extends HTMLElement {
 		this.appendChild($vparent);
 	}
 
-	@DOMInit()
+	@DOMOnAttach()
 	protected initDragAway() {
-		disposeOnDetach(
+		disposeOnDomDetach(
 			this,
 			handleDragAwayEvent(
 				this,
@@ -144,7 +150,7 @@ export class TabSwitch extends HTMLElement {
 		}
 	}
 
-	@DOMInit()
+	@DOMOnAttach()
 	protected onMounted(): IDisposable {
 		// console.log('connectedCallback:%s', this.isConnected);
 
@@ -193,12 +199,12 @@ export class TabSwitch extends HTMLElement {
 		} else if (name === 'icon-url') {
 			if (newValue) {
 				this.$iconImg.src = newValue;
-				if (oldValue !== initState) this.iconClass = '';
+				if ((oldValue as any) !== customElementInitStateSymbol) this.iconClass = '';
 			} else {
 				this.$iconImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 			}
 		} else if (name === 'closable') {
-			const v = DOMGetterSetter.boolean.get(newValue);
+			const v = domConvert.boolean.get(newValue);
 			if (v) {
 				this.$closeButton.classList.remove('hide');
 				this.fixedMenu.pop();
@@ -207,7 +213,7 @@ export class TabSwitch extends HTMLElement {
 				this.fixedMenu.push({ label: 'Close' });
 			}
 		} else if (name === 'movable') {
-			const v = DOMGetterSetter.boolean.get(newValue);
+			const v = domConvert.boolean.get(newValue);
 			if (v) {
 				this.setAttribute('draggable', 'true');
 			} else {
@@ -221,7 +227,7 @@ export class TabSwitch extends HTMLElement {
 		} else if (name === 'width') {
 			this.$title.style.width = newValue || '';
 		} else if (name === 'active') {
-			const bVal = DOMGetterSetter.boolean.get(newValue);
+			const bVal = domConvert.boolean.get(newValue);
 			if (bVal) {
 				// console.log('active', this.tabId);
 				this.onTabBeSelect(this.tabId);
@@ -231,14 +237,14 @@ export class TabSwitch extends HTMLElement {
 		}
 	}
 
-	@GetterSetter(DOMGetterSetter.boolean(true)) public declare closable: boolean;
-	@GetterSetter(DOMGetterSetter.boolean(true)) public declare detachable: boolean;
-	@GetterSetter(DOMGetterSetter.boolean(true)) public declare movable: boolean;
-	@GetterSetter(DOMGetterSetter.boolean) public declare active: boolean;
-	@GetterSetter(DOMGetterSetter.string) public declare width: string;
-	@GetterSetter(DOMGetterSetter.string) public declare iconUrl: string;
-	@GetterSetter(DOMGetterSetter.string) public declare iconClass: string;
-	@GetterSetter(DOMGetterSetter.string) public declare title: string;
+	@DOMGetSet(domConvert.boolean(true)) public declare closable: boolean;
+	@DOMGetSet(domConvert.boolean(true)) public declare detachable: boolean;
+	@DOMGetSet(domConvert.boolean(true)) public declare movable: boolean;
+	@DOMGetSet(domConvert.boolean) public declare active: boolean;
+	@DOMGetSet(domConvert.string) public declare width: string;
+	@DOMGetSet(domConvert.string) public declare iconUrl: string;
+	@DOMGetSet(domConvert.string) public declare iconClass: string;
+	@DOMGetSet(domConvert.string) public declare title: string;
 
 	@DOMEventTrigger({ eventName: 'close', bubbles: true, cancelable: true })
 	private declare onTabWillClose: DOMEventTrigger<number>;

@@ -1,6 +1,6 @@
 import { linux_case_hyphen } from '@idlebox/common';
 
-export function DOMSetAttribute(dom: HTMLElement, qualifiedName: string, value: string | null) {
+export function domSetAttribute(dom: HTMLElement, qualifiedName: string, value: string | null) {
 	if (value === null) {
 		dom.removeAttribute(qualifiedName);
 	} else {
@@ -8,7 +8,7 @@ export function DOMSetAttribute(dom: HTMLElement, qualifiedName: string, value: 
 	}
 }
 
-export function DOMSetBooleanAttribute(dom: HTMLElement, qualifiedName: string, value: boolean) {
+export function domSetBooleanAttribute(dom: HTMLElement, qualifiedName: string, value: boolean) {
 	if (value) {
 		dom.setAttribute(qualifiedName, '');
 	} else {
@@ -16,7 +16,7 @@ export function DOMSetBooleanAttribute(dom: HTMLElement, qualifiedName: string, 
 	}
 }
 
-export function getCustomProperties<T>(instance: T): keyof T {
+export function getCustomPropertyKeys<T>(instance: T): keyof T {
 	return Reflect.getMetadata(getterSetterMetaKey, instance);
 }
 
@@ -69,7 +69,7 @@ const stringHandler = {
 	},
 };
 
-export namespace DOMGetterSetter {
+export namespace domConvert {
 	export const interger = withDefault(intHandler);
 	export const boolean = withDefault(booleanHandler);
 	export const string = withDefault(stringHandler);
@@ -103,7 +103,7 @@ interface IGetterSetter<TSelf, TType> {
 export const getterSetterMetaKey = 'gettersetter';
 export const defauleValueMetaKey = 'propertyDefault';
 
-export function GetterSetter<ELE extends HTMLElement, T>({ get, set, init }: IGetterSetter<ELE, T> = {}) {
+export function DOMGetSet<ELE extends HTMLElement, T>({ get, set, init }: IGetterSetter<ELE, T> = {}) {
 	return (target: ELE, propertyKey: string | symbol) => {
 		if (typeof propertyKey === 'symbol') {
 			throw new Error('can not decorate symbol key');
@@ -143,7 +143,7 @@ export function GetterSetter<ELE extends HTMLElement, T>({ get, set, init }: IGe
 				} else {
 					throw new Error(`can not set ${this.constructor.name}.${propertyKey} to typeof ${typeof value}`);
 				}
-				DOMSetAttribute(this, attributeName, strValue);
+				domSetAttribute(this, attributeName, strValue);
 			},
 			enumerable: true,
 			configurable: false,

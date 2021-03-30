@@ -1,4 +1,4 @@
-import { addDisposableEventListener, Emitter, registerGlobalLifecycle } from '@idlebox/common';
+import { addDisposableEventListener, Emitter, EventRegister, registerGlobalLifecycle } from '@idlebox/common';
 
 export interface IDragEvent extends MouseEvent {
 	dataTransfer: DataTransfer;
@@ -10,7 +10,7 @@ export const globalDragDropEndEvent = new Emitter<IDragEvent>();
 
 registerGlobalLifecycle(globalDragDropEndEvent);
 
-export const onDragDropFinished = globalDragDropEndEvent.register;
+export const onDragDropFinished: EventRegister<IDragEvent> = globalDragDropEndEvent.register;
 
 registerGlobalLifecycle(
 	addDisposableEventListener(window, 'drop', { capture: false }, (e: IDragEvent) => {

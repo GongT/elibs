@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"outDir": "../lib",
 		"rootDir": ".",
+		"lib": ["dom", "ESNext"],
 		"typeRoots": ["../node_modules/@types", "../node_modules"]
 	}
 }

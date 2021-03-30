@@ -1,14 +1,14 @@
 {
   "node": "15.11.0",
   "packageManager": "pnpm",
-  "packageManagerVersion": "5.18.5",
+  "packageManagerVersion": "5.18.9",
   "packageJson": {
     "name": "rush-prettier",
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-      "prettier": "latest",
-      "pretty-quick": "latest"
+      "prettier": "^2.2.1",
+      "pretty-quick": "^3.1.0"
     }
   }
 }

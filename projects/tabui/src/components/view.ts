@@ -1,8 +1,5 @@
-import { Emitter, IDisposable } from '@idlebox/common';
-import { DefineCustomElements } from '../common/custom-elements';
-import { DOMEventTrigger } from '../common/dom-event-trigger';
-import { DOMGetterSetter, GetterSetter } from '../common/dom-getset';
-import { definePublicConstant } from '../common/helper';
+import { DefineCustomElements, domConvert, DOMEventTrigger, DOMGetSet } from '@gongt/custom-element-helpers';
+import { definePublicConstant, Emitter, IDisposable } from '@idlebox/common';
 import { ICommunicateObject, IIcon, ISize, ITabBodyConfig } from '../common/type';
 
 export interface IRenderEventData {
@@ -94,7 +91,7 @@ export class TabView extends HTMLElement {
 	attributeChangedCallback(name: string, _oldValue: string | null, newValue: string | null) {
 		// console.log('[%s] %s : %s => %s', this.constructor.name, name, _oldValue, newValue);
 		if (name === 'open') {
-			const bValue = DOMGetterSetter.boolean.get(newValue);
+			const bValue = domConvert.boolean.get(newValue);
 			if (bValue && !this.renderState) {
 				this._render();
 			}
@@ -113,12 +110,12 @@ export class TabView extends HTMLElement {
 		};
 	}
 
-	@GetterSetter(DOMGetterSetter.boolean(false)) public declare open: boolean;
+	@DOMGetSet(domConvert.boolean(false)) public declare open: boolean;
 
-	@GetterSetter(DOMGetterSetter.interger) public declare tabId: number;
+	@DOMGetSet(domConvert.interger) public declare tabId: number;
 
-	@GetterSetter(DOMGetterSetter.string) public declare renderFile: string;
-	@GetterSetter(DOMGetterSetter.string) public declare styleFile: string;
+	@DOMGetSet(domConvert.string) public declare renderFile: string;
+	@DOMGetSet(domConvert.string) public declare styleFile: string;
 
 	@DOMEventTrigger({ eventName: 'render', bubbles: true })
 	public declare renderEvent: DOMEventTrigger<ICommunicateObject>;
